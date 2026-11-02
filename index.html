@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#7772e8">
-  <meta name="description" content="Daily English 英語日常：每天一點練習，從單字、生活會話到小測驗，建立你的英語學習習慣。">
+  <meta name="description" content="Daily English 英語日常：以 Longman Communication 3000 為起點，從五個隨機抽選的常用單字開始，搭配中文、原創例句與英語發音。">
   <title>Daily English｜讓英語成為日常</title>
   <link rel="stylesheet" href="./styles.css">
   <script src="./app.js" defer></script>
@@ -19,9 +19,7 @@
     <span class="nav-label">你的學習空間</span>
     <nav aria-label="主要導覽">
       <button class="nav-item active" data-view="home" aria-current="page"><span aria-hidden="true">▦</span>學習總覽</button>
-      <button class="nav-item" data-view="words"><span aria-hidden="true">▤</span>單字練習<span class="nav-badge">12</span></button>
-      <button class="nav-item" data-view="conversation"><span aria-hidden="true">☏</span>情境會話</button>
-      <button class="nav-item" data-view="quiz"><span aria-hidden="true">✓</span>每日測驗</button>
+      <button class="nav-item" data-view="words"><span aria-hidden="true">▤</span>單字練習<span class="nav-badge">5</span></button>
       <button class="nav-item" data-view="progress"><span aria-hidden="true">▥</span>學習紀錄</button>
     </nav>
     <div class="sidebar-tip">
@@ -41,48 +39,52 @@
     <main id="main" tabindex="-1">
       <div id="storage-notice" class="notice" role="alert" hidden></div>
       <section id="view-home" class="view">
-        <div class="page-heading"><div><div class="eyebrow">A LITTLE EVERY DAY</div><h1>讓英語，成為你的日常 <span class="wave" aria-hidden="true">✦</span></h1><p>從今天的一小步，走向更自信的自己。</p></div><span class="level-pill"><span></span> A1–A2 · 初級探索者</span></div>
+        <div class="page-heading">
+          <div><div class="eyebrow">A LITTLE EVERY DAY</div><h1>讓英語，成為你的日常 <span class="wave" aria-hidden="true">✦</span></h1><p>從最常用的單字開始，一次專心學五個。</p></div>
+          <span class="level-pill"><span></span> Longman Communication 3000</span>
+        </div>
         <section class="hero" aria-labelledby="hero-title">
-          <div class="hero-copy"><span class="hero-label">YOUR DAILY DOSE OF ENGLISH</span><h2 id="hero-title">每天一點點，<br>英語更靠近一點。</h2><p>一個單字、一段對話、一點新發現。<br>今天，也一起累積說英語的勇氣。</p><button class="button button-dark" data-go="words">開始今日學習 <span aria-hidden="true">↗</span></button><span class="hero-footnote">約 5 分鐘 · 不用完美，只要開始</span></div>
+          <div class="hero-copy"><span class="hero-label">FIVE WORDS, ONE SMALL STEP</span><h2 id="hero-title">從五個單字，<br>開始你的英語日常。</h2><p>從 Longman 3000 詞表隨機抽選的首批五字。<br>讀例句、聽發音，把單字慢慢變熟悉。</p><button class="button button-dark" data-go="words">開始五字練習 <span aria-hidden="true">↗</span></button><span class="hero-footnote">首批固定練習 · 重新整理不會換字</span></div>
           <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="floating-note note-top">Hello, possibilities. <span>✦</span></div><div class="book"><div class="book-spine"></div><div class="book-title">A little<br>better,<br><em>every day.</em></div><div class="book-bottom">THE ENGLISH JOURNEY <span>↗</span></div></div><div class="floating-note note-bottom"><span class="note-check">✓</span> Small steps. Big dreams.</div><span class="art-spark spark-one">✦</span><span class="art-spark spark-two">✳</span></div>
         </section>
         <section class="stats-grid" aria-label="學習概況">
           <article class="stat-card"><span class="stat-icon peach" aria-hidden="true">♨</span><div><span class="stat-label">連續學習</span><div><strong id="streak-count">0</strong><span class="stat-unit">天</span></div></div><span class="stat-aside">保持你的節奏</span></article>
           <article class="stat-card"><span class="stat-icon lavender" aria-hidden="true">▤</span><div><span class="stat-label">已學單字</span><div><strong id="learned-count">0</strong><span class="stat-unit">個</span></div></div><span class="stat-aside">一點一滴累積</span></article>
-          <article class="stat-card"><span class="stat-icon mint" aria-hidden="true">✓</span><div><span class="stat-label">今日任務</span><div><strong id="task-count">0</strong><span class="stat-unit">/ 3 項</span></div></div><div class="mini-progress"><span id="task-bar"></span></div></article>
+          <article class="stat-card"><span class="stat-icon mint" aria-hidden="true">✓</span><div><span class="stat-label">今日五字進度</span><div><strong id="task-count">0</strong><span class="stat-unit">/ 5 個</span></div></div><div class="mini-progress"><span id="task-bar"></span></div></article>
         </section>
         <div class="dashboard-columns">
           <div>
-            <div class="section-heading"><h2>今天，想學點什麼？</h2><span>找到適合你的學習節奏</span></div>
+            <div class="section-heading"><h2>先從這五個單字開始</h2><span>一組單字，反覆練習</span></div>
             <div class="course-grid">
-              <button class="course-card" data-go="words"><div class="course-art vocab-art" aria-hidden="true"><span class="letter-card letter-a">Aa</span><span class="letter-card letter-b">Bb</span><span class="mini-spark">✦</span></div><div class="course-info"><span class="course-tag purple-text">BUILD YOUR VOCABULARY</span><h3>每日單字練習 <span>↗</span></h3><p>從常用單字開始，讓表達更豐富。</p><div class="course-meta"><span>12 個生活單字</span><span>約 3 分鐘</span></div></div></button>
-              <button class="course-card" data-go="conversation"><div class="course-art talk-art" aria-hidden="true"><span class="bubble bubble-left">Hello!</span><span class="bubble bubble-right">Hi there<span>✦</span></span></div><div class="course-info"><span class="course-tag green-text">SPEAK WITH CONFIDENCE</span><h3>生活情境會話 <span>↗</span></h3><p>在真實情境裡，練習自然開口。</p><div class="course-meta"><span>3 個日常情境</span><span>約 2 分鐘</span></div></div></button>
+              <button class="course-card" data-go="words"><div class="course-art vocab-art" aria-hidden="true"><span class="letter-card letter-a">Aa</span><span class="letter-card letter-b">Bb</span><span class="mini-spark">✦</span></div><div class="course-info"><span class="course-tag purple-text">BUILD YOUR VOCABULARY</span><h3>五字練習 <span>↗</span></h3><p>washing · studio · solution · product · basically</p><div class="course-meta"><span>中文解釋與原創例句</span><span>單字／例句發音</span></div></div></button>
+              <a class="course-card" href="./longman_3000_list.pdf" target="_blank" rel="noopener"><div class="course-art source-art" aria-hidden="true"><span class="source-number">3000<small>LONGMAN COMMUNICATION</small></span></div><div class="course-info"><span class="course-tag green-text">OUR STARTING POINT</span><h3>常用單字來源 <span>↗</span></h3><p>查看你提供的 Longman 3000 原始詞表。</p><div class="course-meta"><span>PDF · 16 頁</span><span>另開分頁</span></div></div></a>
             </div>
-            <div class="daily-quote"><span aria-hidden="true">“</span><div><p>You don't have to be great to start,<br>but you have to start to be great.</p><small>不必很厲害才開始，但開始了，才會變厲害。</small></div><span class="quote-tag">給今天的你</span></div>
+            <div class="daily-quote"><span aria-hidden="true">“</span><div><p>Five words today.<br>A little more confidence tomorrow.</p><small>今天多認識五個單字，明天多一點自信。</small></div><span class="quote-tag">給今天的你</span></div>
           </div>
-          <aside class="daily-panel"><div class="section-heading"><h2>今日小目標</h2><span class="date-pill">TODAY</span></div><p class="panel-intro">一點點專注，換一點點進步。</p><ul class="goal-list"><li><span class="goal-check" id="goal-words">1</span><div><strong>認識 5 個新單字</strong><small>替你的詞彙庫加點新朋友</small></div><button data-go="words" aria-label="前往單字練習">↗</button></li><li><span class="goal-check" id="goal-conversation">2</span><div><strong>練習一段生活會話</strong><small>把英語帶進日常生活裡</small></div><button data-go="conversation" aria-label="前往情境會話">↗</button></li><li><span class="goal-check" id="goal-quiz">3</span><div><strong>完成每日小測驗</strong><small>看看今天學到了什麼</small></div><button data-go="quiz" aria-label="前往每日測驗">↗</button></li></ul><div class="goal-footer"><span aria-hidden="true">✧</span><p>學習不是比誰快，<br><strong>是比昨天的自己多走一步。</strong></p></div></aside>
+          <aside class="daily-panel"><div class="section-heading"><h2>今日小目標</h2><span class="date-pill">TODAY</span></div><p class="panel-intro">先認識，再跟讀，最後記住。</p><ul class="goal-list"><li><span class="goal-check" id="goal-words">0</span><div><strong>練習首批 5 個單字</strong><small id="goal-status">已完成 0 / 5 個</small></div><button data-go="words" aria-label="前往單字練習">↗</button></li></ul><p class="source-note">這一版先固定首批五字，不會每日換字。完整詞庫的每日隨機抽選將於後續擴充。</p><div class="goal-footer"><span aria-hidden="true">✧</span><p>學習不是比誰快，<br><strong>是比昨天的自己多走一步。</strong></p></div></aside>
         </div>
       </section>
 
       <section id="view-words" class="view" hidden>
-        <div class="page-heading"><div><div class="eyebrow">ONE WORD AT A TIME</div><h1>把單字，變成你的朋友。</h1><p>先想想意思，再翻面看看；熟悉後按「我記住了」。</p></div><span class="level-pill">生活單字 · A1–A2</span></div>
-        <div class="learning-layout"><div class="flashcard-panel"><div class="section-heading"><h2>單字卡片</h2><span id="word-position"></span></div><button id="flashcard" class="flashcard" aria-label="翻面查看單字中文解釋"><span class="word-category" id="word-category"></span><strong id="word-text"></strong><span id="word-phonetic"></span><span class="word-meaning" id="word-meaning" hidden></span><span class="flip-hint" id="flip-hint">點一下，看看中文意思 ↻</span></button><div class="word-example"><p id="word-example" lang="en"></p><small id="word-translation"></small><div><button class="listen-button" id="speak-example">♪ 聽例句</button></div></div><div class="word-actions"><button class="button button-light" id="prev-word">← 上一個</button><button class="button button-light" id="speak-word">聽發音 ♪</button><button class="button button-primary" id="learn-word">我記住了 ✓</button><button class="button button-light" id="next-word">下一個 →</button></div><p class="inline-status" id="word-status" role="status"></p></div><aside class="learning-note"><span class="eyebrow">A SMALL TIP</span><h2>不只背單字，<br>也記住它的用法。</h2><p>跟著例句讀一次，試著換成自己的生活經驗。當單字有了畫面，就更容易記住。</p><div class="note-divider"></div><p>今日目標 <strong id="word-daily-count">0 / 5</strong></p><p class="muted">發音使用瀏覽器的英語語音；可用性與聲音依裝置而異。</p></aside></div>
-      </section>
-
-      <section id="view-conversation" class="view" hidden>
-        <div class="page-heading"><div><div class="eyebrow">REAL LIFE, REAL ENGLISH</div><h1>下一次，就試著這樣說。</h1><p>選個情境，跟讀對話，讓英語走進你的生活。</p></div></div>
-        <div class="scenario-tabs" role="group" aria-label="選擇會話情境"><button class="scenario-tab active" data-scenario="cafe" aria-pressed="true">☕ 咖啡店點餐</button><button class="scenario-tab" data-scenario="directions" aria-pressed="false">↗ 問路與交通</button><button class="scenario-tab" data-scenario="introductions" aria-pressed="false">☺ 第一次見面</button></div>
-        <article class="conversation-panel"><div class="section-heading"><div><span class="eyebrow">LET'S HAVE A CONVERSATION</span><h2 id="scenario-title"></h2></div><span class="level-pill">A1–A2</span></div><div id="dialogue" class="dialogue"></div><div class="conversation-footer"><p>試著將其中一句換成你自己的回答，再大聲說一次。</p><button class="button button-primary" id="finish-conversation">完成這段練習 ✓</button></div><p id="conversation-status" class="inline-status" role="status"></p></article>
-      </section>
-
-      <section id="view-quiz" class="view" hidden>
-        <div class="page-heading"><div><div class="eyebrow">A LITTLE CHECK-IN</div><h1>今天的你，又進步了多少？</h1><p>5 題生活英語小測驗。不怕答錯，每一題都是學習。</p></div></div>
-        <article class="quiz-panel"><div id="quiz-content"></div><p class="inline-status" id="quiz-feedback" role="status"></p><button class="button button-primary" id="quiz-next" hidden>下一題 →</button></article>
+        <div class="page-heading"><div><div class="eyebrow">ONE WORD AT A TIME</div><h1>把單字，變成你的朋友。</h1><p>首批隨機五字：先翻面認識，再聽例句；熟悉後按「我記住了」。</p></div><span class="level-pill">Longman 3000 · 首批五字</span></div>
+        <div class="learning-layout">
+          <div class="flashcard-panel">
+            <div class="section-heading"><h2>單字卡片</h2><span id="word-position"></span></div>
+            <button id="flashcard" class="flashcard" aria-label="翻面查看單字中文解釋"><span class="word-category" id="word-category"></span><strong id="word-text"></strong><span id="word-phonetic"></span><span class="word-meaning" id="word-meaning" hidden></span><span class="flip-hint" id="flip-hint">點一下，看看中文意思 ↻</span></button>
+            <div class="word-example"><p id="word-example" lang="en"></p><small id="word-translation"></small><div><button class="listen-button" id="speak-example">♪ 聽例句</button></div></div>
+            <a class="word-source" id="word-source" href="./longman_3000_list.pdf" target="_blank" rel="noopener">查看原始詞表 ↗</a>
+            <div class="word-actions"><button class="button button-light" id="prev-word">← 上一個</button><button class="button button-light" id="speak-word">聽發音 ♪</button><button class="button button-primary" id="learn-word">我記住了 ✓</button><button class="button button-light" id="next-word">下一個 →</button></div>
+            <p class="inline-status" id="word-status" role="status"></p>
+          </div>
+          <aside class="learning-note"><span class="eyebrow">A SMALL TIP</span><h2>不只背單字，<br>也記住它的用法。</h2><p>跟著例句讀一次，試著換成自己的生活經驗。當單字有了畫面，就更容易記住。</p><div class="note-divider"></div><p>今日目標 <strong id="word-daily-count">0 / 5</strong></p><p class="muted">S 表示口語頻率，W 表示書面頻率；1、2、3 分別代表前 1000、2000、3000 名。詞性與頻率取自原始 PDF，中文、音標與例句為另行編寫。</p><p class="muted">發音使用瀏覽器的英語語音；可用性與聲音依裝置而異。</p></aside>
+        </div>
       </section>
 
       <section id="view-progress" class="view" hidden>
-        <div class="page-heading"><div><div class="eyebrow">LOOK HOW FAR YOU'VE COME</div><h1>每一小步，都算數。</h1><p>你的紀錄保存在目前的瀏覽器，不需要登入。</p></div></div>
-        <div class="progress-summary" id="progress-summary"></div><article class="record-panel"><div class="section-heading"><h2>最近 7 天</h2><span>完成任務數 / 3</span></div><div class="week-chart" id="week-chart"></div></article><article class="record-panel"><h2>我的單字收藏</h2><div id="learned-list" class="learned-list"></div></article>
+        <div class="page-heading"><div><div class="eyebrow">LOOK HOW FAR YOU'VE COME</div><h1>每一小步，都算數。</h1><p>你的紀錄保存在目前的瀏覽器，不需要登入。先前版本的單字紀錄也會保留。</p></div></div>
+        <div class="progress-summary" id="progress-summary"></div>
+        <article class="record-panel"><div class="section-heading"><h2>最近 7 天</h2><span>每日單字練習 / 5</span></div><div class="week-chart" id="week-chart"></div></article>
+        <article class="record-panel"><h2>我的單字收藏</h2><div id="learned-list" class="learned-list"></div></article>
       </section>
       <footer class="footer"><span><strong>Daily English</strong> · 每天一點，走得更遠。</span><span>Made for your everyday growth <span class="footer-spark">✦</span></span></footer>
     </main>
