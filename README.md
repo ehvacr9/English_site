@@ -28,6 +28,8 @@
 
 ## 維護與本機預覽
 
+[英語分級說明](./levels.html) 介紹 CEFR 的 A1–C2 六級、A／B／C 三大類、概略理解與表達能力、自擬生活情境，以及詞彙標記與整體能力、S/W 頻率的差別。附 Council of Europe 與 Cambridge English 來源連結；中文摘要為本站整理，非官方逐字譯文或程度測驗。不提供固定詞彙量門檻或非官方考試分數換算。兩頁均有主要導覽，詞彙表的 CEFR 欄位也可前往說明頁。
+
 直接用瀏覽器開啟 [index.html](./index.html)，或以 VS Code 靜態網站預覽工具開啟。不需伺服器即可呈現完整詞彙表格。
 
 新增詞彙時，在 [index.html](./index.html) 的表格加入一列，並同步更新筆數與本文件。樣式位於 [styles.css](./styles.css)。Google Fonts 為可選字型，無網路時自動使用系統字型。
@@ -42,4 +44,4 @@ PDF 是常用詞彙參考來源，不是本頁 CEFR 標示的來源。文件共 
 
 ## GitHub Pages
 
-[部署流程](./.github/workflows/pages.yml) 僅發布 HTML、CSS 與來源 PDF。推送到 `main` 後自動部署，Pages 的 Source 應設為 **GitHub Actions**。日後修改、提交並執行 `git push origin main` 即可更新，部署狀態可在 repository 的 Actions 查看。
+[部署流程](./.github/workflows/pages.yml) 發布詞彙庫、分級說明頁、共用 CSS 與來源 PDF。推送到 `main` 後自動部署，Pages 的 Source 應設為 **GitHub Actions**。日後修改、提交並執行 `git push origin main` 即可更新，部署狀態可在 repository 的 Actions 查看。

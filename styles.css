@@ -67,5 +67,33 @@ td a:hover{color:#44307b;text-decoration-color:currentColor}
 .footer{margin-top:35px;border-top:1px solid var(--line);display:flex;justify-content:space-between;padding:21px 0;font-size:10px;color:#80758d;gap:15px;flex-wrap:wrap}
 .footer strong{font-weight:500}
 .footer a{text-decoration:underline;text-underline-offset:4px}
+.level-guide-link{display:inline-block;text-decoration:underline;text-underline-offset:4px}
+.level-b1{background:#e8f4f4;color:#366f75}
+.level-c1{background:#f9eee4;color:#8a5a31}
+.level-c2{background:#f8e9ee;color:#904660}
+.guide-section{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;margin-bottom:24px;min-width:0}
+.guide-section p{color:#646577;font-size:13px;line-height:1.9;margin:12px 0 0}
+.guide-intro{background:#f1eefb}
+.level-groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-top:24px}
+.level-groups>div{background:#ffffffb3;border:1px solid #e4def3;border-radius:10px;padding:17px}
+.level-groups strong{display:block;color:#625381;font-size:13px}
+.level-groups span{display:block;font-size:12px;color:#726780;margin-top:7px}
+.guide-section .table-hint{margin:14px 0 18px;font-size:11px}
+.guide-heading p{font-size:11px}
+.cefr-table{min-width:820px}
+.cefr-table th,.cefr-table td{padding:18px 15px}
+.cefr-table tbody th{font-family:inherit;white-space:nowrap;font-size:13px}
+.cefr-table tbody th small{display:block;font-size:11px;color:var(--muted);margin-top:7px;font-weight:400}
+.cefr-table td{font-size:12px;line-height:1.9;min-width:200px}
+.guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.guide-link,.guide-sources a{color:#6554a4;text-decoration:underline;text-underline-offset:4px}
+.guide-link{display:inline-block;font-size:12px;margin-top:18px}
+.guide-list{padding-left:22px;color:#646577;font-size:13px;line-height:1.9}
+.guide-list li{padding-left:4px;margin:10px 0}
+.guide-sources{margin-top:24px}
+.guide-sources ul{padding-left:20px;font-size:12px;line-height:2.2}
+.guide-sources p{font-size:11px}
+@media(max-width:900px){.guide-grid{grid-template-columns:1fr;gap:0}.level-groups{grid-template-columns:1fr;gap:10px}}
+@media(max-width:700px){.guide-section{padding:20px}.guide-section p,.guide-list{font-size:12px}.level-groups{margin-top:18px}.cefr-table td{font-size:11px}}
 @media(max-width:1100px){.sidebar{width:205px;padding:30px 16px}.workspace{margin-left:205px}.brand{font-size:16px;gap:9px}.topbar{padding:18px 26px}main{padding:30px 26px 0}}
 @media(max-width:700px){.sidebar{position:static;width:auto;padding:18px;border-bottom:1px solid var(--line)}.brand{font-size:17px;margin:0 0 15px;gap:10px}.brand small,.nav-label,.sidebar-note{display:none}.brand-icon{height:33px;width:33px}nav{display:flex;flex-wrap:wrap;gap:5px}.nav-item{font-size:11px;padding:10px}.nav-item>span:first-child{font-size:17px;width:18px}.workspace{margin-left:0}.topbar{min-height:55px;padding:15px 18px}.breadcrumb{font-size:10px;gap:10px}.header-label{display:none}main{padding:26px 16px 0}.page-heading{align-items:flex-start;flex-direction:column;gap:12px}h1{font-size:25px}.page-heading p{font-size:12px}.panel-heading{padding:21px 18px 0;align-items:flex-start}.panel-heading p{font-size:10px}.dictionary-count{display:none}.table-hint{margin:13px 18px 18px;font-size:10px}.table-footer{padding:15px 18px}.library-note{padding:20px}.footer{font-size:9px}}
