@@ -222,6 +222,7 @@ function speak(text, statusElement) {
   window.speechSynthesis.speak(utterance);
 }
 $("speak-word").addEventListener("click", () => speak(words[wordIndex].word, $("word-status")));
+$("speak-example").addEventListener("click", () => speak(words[wordIndex].example, $("word-status")));
 
 function renderConversation() {
   const scenario = scenarios[scenarioId];
