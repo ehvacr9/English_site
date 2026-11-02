@@ -2,9 +2,11 @@
 
 (() => {
   const entries = window.OXFORD_WORDS;
+  const oxfordLinks = window.OXFORD_LINKS;
   const $ = (id) => document.getElementById(id);
-  if (!Array.isArray(entries) || entries.length !== 3000) {
-    console.error("Oxford vocabulary data is missing or incomplete.");
+  if (!Array.isArray(entries) || entries.length !== 3000 || !oxfordLinks ||
+      entries.some((entry) => !Array.isArray(oxfordLinks[entry.word]) || !oxfordLinks[entry.word].length)) {
+    console.error("Oxford vocabulary or part-of-speech link data is missing or incomplete.");
     $("library-error").textContent = "無法載入完整 Oxford 詞庫，請重新整理頁面或檢查網路。你仍可從側邊連結查閱原始 PDF。";
     $("library-error").hidden = false;
     $("results-status").textContent = "詞庫載入失敗";
@@ -16,7 +18,7 @@
   let filtered = entries;
   const normalize = (text) => text.toLowerCase().replaceAll("’", "'").trim().replace(/\s+/g, " ");
   const dictionaries = [
-    { name: "Oxford", url: (term) => `https://www.oxfordlearnersdictionaries.com/search/english/?q=${encodeURIComponent(term)}` },
+    { name: "Oxford" },
     { name: "Cambridge", url: (term) => `https://dictionary.cambridge.org/dictionary/english/${encodeURIComponent(term.replaceAll(" ", "-"))}` },
     { name: "Longman", url: (term) => `https://www.ldoceonline.com/dictionary/${encodeURIComponent(term.replaceAll(" ", "-"))}` },
     { name: "Collins", url: (term) => `https://www.collinsdictionary.com/dictionary/english/${encodeURIComponent(term.replaceAll(" ", "-"))}` },
@@ -65,8 +67,15 @@
       row.append(word, pos, levels);
       for (const dictionary of dictionaries) {
         const cell = document.createElement("td");
-        for (const term of entry.terms) {
-          cell.append(externalLink(`${dictionary.name}${entry.terms.length > 1 ? ` · ${term}` : ""} ↗`, dictionary.url(term), `${entry.word}：${dictionary.name} 查詢 ${term}`));
+        if (dictionary.name === "Oxford") {
+          for (const link of oxfordLinks[entry.word]) {
+            const label = `${entry.terms.length > 1 ? `${link.term} · ` : ""}${link.pos}`;
+            cell.append(externalLink(`Oxford · ${label} ↗`, link.url, `${entry.word}：Oxford ${link.term} ${link.pos}`));
+          }
+        } else {
+          for (const term of entry.terms) {
+            cell.append(externalLink(`${dictionary.name}${entry.terms.length > 1 ? ` · ${term}` : ""} ↗`, dictionary.url(term), `${entry.word}：${dictionary.name} 查詢 ${term}`));
+          }
         }
         row.append(cell);
       }

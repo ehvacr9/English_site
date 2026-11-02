@@ -15,7 +15,7 @@
 - 含多種等級的詞條，篩選命中任一等級即可顯示，且保留全部詞性／等級；兩欄的多行內容逐行對應。
 - 例：`academic` 的 `adj.` 是 B1、`n.` 是 B2，不會將兩個詞性誤標成同一級。
 - 每筆附 Oxford、Cambridge、Longman、Collins、Merriam-Webster 五家官方查閱連結。a、an 各自提供五家連結。已移除逐筆 PDF 頁碼連結，仍保留側邊及頁尾的完整詞表入口；資料檔中的頁碼保留供來源驗證。
-- 辭典查詢會移除詞頭後方的來源編號與括號說明，保留片語，將彎單引號正規化。Oxford 使用官方搜尋入口，不猜測同形詞的詞條編號；其他辭典採官方詞條網址格式。
+- 辭典查詢會移除詞頭後方的來源編號與括號說明，保留片語，將彎單引號正規化。Oxford 按詞性列出核對過的直接詞條連結（例如 map 的 noun、verb）；其他辭典採官方詞條網址格式。
 - 辭典可能收錄在其他拼法或詞義下；連結並不保證直接跳到同一詞性或詞義。各家可用性與反自動化限制由原站決定，未逐一在線驗證所有外部頁面。網站不複製辭典釋義。
 - 原生表格、鍵盤可操作的搜尋與分頁，窄螢幕可在表格內左右捲動。
 - 資料未載入時顯示明確警告，不以空詞庫假裝載入成功。停用 JavaScript 時提供 PDF 替代入口。
@@ -28,7 +28,7 @@
 
 ## 本機預覽
 
-直接開啟 [index.html](./index.html)，或以 VS Code 靜態網站工具預覽。詞庫以 [oxford-words.js](./oxford-words.js) 載入，不使用 `fetch`，因此支援直接開啟本機檔案。共用樣式為 [styles.css](./styles.css)，搜尋、表格與分頁為 [library.js](./library.js)。
+直接開啟 [index.html](./index.html)，或以 VS Code 靜態網站工具預覽。詞庫與 Oxford 詞性連結分別以 [oxford-words.js](./oxford-words.js)、[oxford-links.js](./oxford-links.js) 載入，不使用 `fetch`，因此支援直接開啟本機檔案。共用樣式為 [styles.css](./styles.css)，搜尋、表格與分頁為 [library.js](./library.js)。
 
 Google Fonts 是可選字型，無網路時自動使用系統字型。
 
@@ -43,6 +43,20 @@ py -m unittest discover -s scripts -p "test_*.py"
 
 若缺少 PyMuPDF 再執行 `py -m pip install PyMuPDF`。重新匯入會更新產生的 [oxford-words.js](./oxford-words.js)；請勿直接手改這個資料檔。正常瀏覽網站不需要 Python。
 
+### Oxford 詞性連結
+
+[oxford-links.js](./oxford-links.js) 於 2026-11-03 依 [Oxford 官方詞表](https://www.oxfordlearnersdictionaries.com/wordlists/oxford3000-5000) 核對，並補查該表未涵蓋的 13 個單字官方詞條頁，共 **3,817 個詞性連結，涵蓋全部 3,000 筆 PDF 詞條**。727 筆顯示多個連結。只保存詞頭、詞性與網址，不複製釋義、例句或音訊。
+
+PDF 的 `v.` 可配對線上的 verb、linking verb、modal verb、auxiliary verb；例如 cannot 在 PDF 是 v.，線上為 modal verb，表格原始詞性不改，連結標籤使用線上分類。同一詞性如有多個官方詞條皆保留，不以詞義文字猜測網址。同字不同義可能共用一頁，請在辭典中確認所需詞義。
+
+更新連結時先下載官方詞表 HTML 至本機；對未配對的單字另下載 Oxford 官方搜尋結果／詞條頁，命名為 `oxford-entry-單字.html`。執行：
+
+```powershell
+py scripts\import_oxford_links.py "C:\path\oxford-wordlist.html" --entries "C:\path\entry-pages"
+```
+
+[scripts/import_oxford_links.py](./scripts/import_oxford_links.py) 擷取官方詞表的詞性／href，並從補查頁的 canonical、描述及其他結果連結補足資料。任何 PDF 詞性未配對便報錯，不以猜測編號或搜尋入口冒充直接連結。原始 HTML 為開發時參考，不部署。詞庫或連結資料缺少時，頁面顯示載入失敗，不悄悄省略。
+
 ## 來源 PDF
 
 使用者提供的 Oxford 與 [Longman PDF](./longman_3000_list.pdf) 均保存於專案、GitHub 與網站。使用者已授權本次複製及公開；原文件權利仍屬其權利人，本專案不授予第三方額外轉授權。
@@ -51,4 +65,4 @@ Oxford PDF 是目前單字、詞性與等級的來源。Longman 是補充參考�
 
 ## GitHub Pages
 
-[部署流程](./.github/workflows/pages.yml) 發布兩個 HTML 頁面、CSS、兩個 JavaScript 檔與兩份 PDF。推送到 `main` 後自動部署，Pages 的 Source 應設為 **GitHub Actions**。修改後提交並執行 `git push origin main` 即可更新，部署狀態可於 Actions 查看。
+[部署流程](./.github/workflows/pages.yml) 發布兩個 HTML 頁面、CSS、三個 JavaScript 檔與兩份 PDF。推送到 `main` 後自動部署，Pages 的 Source 應設為 **GitHub Actions**。修改後提交並執行 `git push origin main` 即可更新，部署狀態可於 Actions 查看。
