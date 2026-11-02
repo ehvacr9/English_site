@@ -1,13 +1,15 @@
 "use strict";
 
 (() => {
-  const entries = window.OXFORD_WORDS;
+  const oxford = window.OXFORD_WORDS;
+  const longman = window.LONGMAN_WORDS;
   const oxfordLinks = window.OXFORD_LINKS;
   const $ = (id) => document.getElementById(id);
-  if (!Array.isArray(entries) || entries.length !== 3000 || !oxfordLinks ||
-      entries.some((entry) => !Array.isArray(oxfordLinks[entry.word]) || !oxfordLinks[entry.word].length)) {
-    console.error("Oxford vocabulary or part-of-speech link data is missing or incomplete.");
-    $("library-error").textContent = "無法載入完整 Oxford 詞庫，請重新整理頁面或檢查網路。你仍可從側邊連結查閱原始 PDF。";
+  if (!Array.isArray(oxford) || oxford.length !== 3000 || !Array.isArray(longman) || longman.length !== 578 || !oxfordLinks ||
+      oxford.some((entry) => !Array.isArray(oxfordLinks[entry.word]) || !oxfordLinks[entry.word].length) ||
+      longman.some((entry) => !Array.isArray(entry.oxfordLinks) || (!entry.oxfordLinks.length && !entry.oxfordSearch))) {
+    console.error("Vocabulary or dictionary link data is missing or incomplete.");
+    $("library-error").textContent = "無法載入完整詞庫，請重新整理頁面或檢查網路。你仍可從側邊連結查閱原始 PDF。";
     $("library-error").hidden = false;
     $("results-status").textContent = "詞庫載入失敗";
     return;
@@ -15,8 +17,9 @@
 
   const pageSize = 50;
   let pageNumber = 1;
-  let filtered = entries;
   const normalize = (text) => text.toLowerCase().replaceAll("’", "'").trim().replace(/\s+/g, " ");
+  const entries = [...oxford, ...longman].sort((a, b) => normalize(a.terms[0]).localeCompare(normalize(b.terms[0]), "en"));
+  let filtered = entries;
   const dictionaries = [
     { name: "Oxford" },
     { name: "Cambridge", url: (term) => `https://dictionary.cambridge.org/dictionary/english/${encodeURIComponent(term.replaceAll(" ", "-"))}` },
@@ -48,6 +51,10 @@
       text.lang = "en";
       text.textContent = entry.word;
       word.append(text);
+      const source = document.createElement("small");
+      source.className = "word-source-label";
+      source.textContent = entry.source || "Oxford";
+      word.append(source);
       const pos = document.createElement("td");
       const levels = document.createElement("td");
       for (const group of entry.groups) {
@@ -55,11 +62,17 @@
         part.className = "pos-group";
         part.lang = "en";
         part.textContent = group.pos;
+        if (group.frequency) {
+          const frequency = document.createElement("small");
+          frequency.className = "frequency-label";
+          frequency.textContent = group.frequency;
+          part.append(frequency);
+        }
         const levelRow = document.createElement("div");
         levelRow.className = "level-group";
         const badge = document.createElement("span");
-        badge.className = `level level-${group.level.toLowerCase()}`;
-        badge.textContent = group.level;
+        badge.className = `level level-${group.level ? group.level.toLowerCase() : "ungraded"}`;
+        badge.textContent = group.level || "未提供";
         levelRow.append(badge);
         pos.append(part);
         levels.append(levelRow);
@@ -68,9 +81,13 @@
       for (const dictionary of dictionaries) {
         const cell = document.createElement("td");
         if (dictionary.name === "Oxford") {
-          for (const link of oxfordLinks[entry.word]) {
+          for (const link of entry.oxfordLinks || oxfordLinks[entry.word]) {
             const label = `${entry.terms.length > 1 ? `${link.term} · ` : ""}${link.pos}`;
             cell.append(externalLink(`Oxford · ${label} ↗`, link.url, `${entry.word}：Oxford ${link.term} ${link.pos}`));
+          }
+          if (entry.oxfordSearch) {
+            const term = entry.terms[0];
+            cell.append(externalLink("Oxford · 搜尋其他詞性 ↗", `https://www.oxfordlearnersdictionaries.com/search/english/?q=${encodeURIComponent(term)}`, `${entry.word}：Oxford 搜尋未核對的詞性`));
           }
         } else {
           for (const term of entry.terms) {
@@ -103,7 +120,7 @@
     const level = $("level-filter").value;
     filtered = entries.filter((entry) => normalize(entry.word).includes(query) &&
       (!initial || normalize(entry.word).startsWith(initial)) &&
-      (!level || entry.groups.some((group) => group.level === level)));
+      (!level || entry.groups.some((group) => group.level === (level === "ungraded" ? "" : level))));
     pageNumber = 1;
     render();
   }

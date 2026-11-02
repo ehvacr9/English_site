@@ -1,4 +1,4 @@
-# Daily English · Oxford 3000 常用詞彙庫
+# Daily English · Oxford + Longman 常用詞彙庫
 
 繁體中文介面的英文詞彙參考網站，以原生 HTML、CSS、JavaScript 製作，不需套件安裝或建置。
 
@@ -8,10 +8,10 @@
 
 ## 完整詞庫
 
-從使用者提供的 [The_Oxford_3000.pdf](./The_Oxford_3000.pdf) 共 11 頁匯入 **3,000 筆原始詞條、3,308 組詞性／CEFR 配對**，保留 PDF 原始順序。a、an 合併為一筆，不同詞義（例如兩筆 bank）及來源同形詞編號分別保留。
+從使用者提供的 [The_Oxford_3000.pdf](./The_Oxford_3000.pdf) 共 11 頁匯入 **3,000 筆原始詞條、3,308 組詞性／CEFR 配對**，資料檔保留 PDF 原始順序，頁面則依單字排序。a、an 合併為一筆，不同詞義（例如兩筆 bank）及來源同形詞編號分別保留。
 
-- 每頁 50 筆，共 60 頁；搜尋涵蓋整個詞庫，不只目前頁面。
-- 可搜尋單字（忽略大小寫、前後空白與彎／直單引號差異），依 A–Z 第一個英文字母分類，並依 A1、A2、B1、B2 篩選。三種條件可同時使用，變更條件會回到第一頁；「清除篩選」重設全部條件。
+- 加入 Longman 去重後新增的 **578 個單字**，總共 **3,578 筆詞條**。每頁 50 筆，共 72 頁（最後一頁 28 筆），合併後依單字字母排序；同詞頭保留既有 Oxford 順序。搜尋涵蓋整個詞庫，不只目前頁面。
+- 可搜尋單字（忽略大小寫、前後空白與彎／直單引號差異），依 A–Z 第一個英文字母分類，並依 A1、A2、B1、B2 或「未提供（Longman）」篩選。三種條件可同時使用，變更條件會回到第一頁；「清除篩選」重設全部條件。
 - 含多種等級的詞條，篩選命中任一等級即可顯示，且保留全部詞性／等級；兩欄的多行內容逐行對應。
 - 例：`academic` 的 `adj.` 是 B1、`n.` 是 B2，不會將兩個詞性誤標成同一級。
 - 每筆附 Oxford、Cambridge、Longman、Collins、Merriam-Webster 五家官方查閱連結。a、an 各自提供五家連結。已移除逐筆 PDF 頁碼連結，仍保留側邊及頁尾的完整詞表入口；資料檔中的頁碼保留供來源驗證。
@@ -28,7 +28,7 @@
 
 ## 本機預覽
 
-直接開啟 [index.html](./index.html)，或以 VS Code 靜態網站工具預覽。詞庫與 Oxford 詞性連結分別以 [oxford-words.js](./oxford-words.js)、[oxford-links.js](./oxford-links.js) 載入，不使用 `fetch`，因此支援直接開啟本機檔案。共用樣式為 [styles.css](./styles.css)，搜尋、表格與分頁為 [library.js](./library.js)。
+直接開啟 [index.html](./index.html)，或以 VS Code 靜態網站工具預覽。Oxford 詞庫、Oxford 詞性連結及 Longman 新增詞庫分別以 [oxford-words.js](./oxford-words.js)、[oxford-links.js](./oxford-links.js)、[longman-words.js](./longman-words.js) 載入，不使用 `fetch`，因此支援直接開啟本機檔案。共用樣式為 [styles.css](./styles.css)，搜尋、表格與分頁為 [library.js](./library.js)。
 
 Google Fonts 是可選字型，無網路時自動使用系統字型。
 
@@ -61,8 +61,19 @@ py scripts\import_oxford_links.py "C:\path\oxford-wordlist.html" --entries "C:\p
 
 使用者提供的 Oxford 與 [Longman PDF](./longman_3000_list.pdf) 均保存於專案、GitHub 與網站。使用者已授權本次複製及公開；原文件權利仍屬其權利人，本專案不授予第三方額外轉授權。
 
-Oxford PDF 是目前單字、詞性與等級的來源。Longman 是補充參考，不作為 CEFR 分級依據；其 16 頁解析為 3591 筆詞性條目、3160 個不重複詞頭。既有 [scripts/select_words.py](./scripts/select_words.py) 僅為 Longman 離線抽樣工具，不參與網頁。
+Oxford PDF 提供既有單字、詞性與 CEFR 等級。Longman 16 頁解析為 3591 筆詞性條目、3160 個不重複詞頭，其中 **2,582 個已由 Oxford 收錄而跳過，578 個加入**。比對以 Oxford `terms` 為準（已去除同形詞編號、括號註記，拆開 a、an），忽略大小寫、彎／直引號及多餘空白。不合併不同拼法；已存在的詞整筆跳過，不補入其 Longman 詞性或頻率，也不覆寫 Oxford 資料。
+
+新增詞彙保留 Longman 原有詞性及 S/W 頻率，沒有 CEFR 來源，因此顯示「未提供」；不能以頻率猜測等級。單字下方標示資料來源，但不重新加入逐筆 PDF 頁碼連結。
+
+[scripts/import_longman.py](./scripts/import_longman.py) 重用既有 Longman 解析器，產生 [longman-words.js](./longman-words.js)。比對目前下載的 Oxford 官方完整詞表後，410 筆新增詞彙可提供已核對詞性連結；171 筆仍有未核對詞性，明確提供 Oxford 搜尋連結（兩者可能重疊）。不把搜尋網址冒充詞性直接連結。既有 3,000 筆 Oxford 已核對連結完全保留。重新執行匯入：
+
+```powershell
+py scripts\import_longman.py --oxford-html "C:\path\oxford-wordlist.html"
+py -m unittest discover -s scripts -p "test_*.py"
+```
+
+重複匯入會產生同一份去重資料，不累加重複詞。原有 [scripts/select_words.py](./scripts/select_words.py) 仍可作離線抽樣工具。
 
 ## GitHub Pages
 
-[部署流程](./.github/workflows/pages.yml) 發布兩個 HTML 頁面、CSS、三個 JavaScript 檔與兩份 PDF。推送到 `main` 後自動部署，Pages 的 Source 應設為 **GitHub Actions**。修改後提交並執行 `git push origin main` 即可更新，部署狀態可於 Actions 查看。
+[部署流程](./.github/workflows/pages.yml) 發布兩個 HTML 頁面、CSS、四個 JavaScript 檔與兩份 PDF。推送到 `main` 後自動部署，Pages 的 Source 應設為 **GitHub Actions**。修改後提交並執行 `git push origin main` 即可更新，部署狀態可於 Actions 查看。
