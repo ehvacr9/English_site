@@ -71,7 +71,6 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 [hidden]{display:none!important}
 .empty-results{text-align:center;padding:35px;color:var(--muted)}
 #vocabulary-body th>span{display:block;font-size:20px;max-width:210px;white-space:normal}
-#vocabulary-body th>a{display:block;font:10px "Noto Sans TC",system-ui,sans-serif;color:#74628e;text-decoration:underline;margin-top:8px}
 #vocabulary-body td>a{display:block}
 .pos-group,.level-group{min-height:35px;display:flex;align-items:center}
 .pos-group{white-space:nowrap}

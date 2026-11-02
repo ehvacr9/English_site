@@ -45,7 +45,7 @@
       const text = document.createElement("span");
       text.lang = "en";
       text.textContent = entry.word;
-      word.append(text, externalLink(`PDF 第 ${entry.page} 頁 ↗`, `./The_Oxford_3000.pdf#page=${entry.page}`, `${entry.word}：Oxford PDF 第 ${entry.page} 頁`));
+      word.append(text);
       const pos = document.createElement("td");
       const levels = document.createElement("td");
       for (const group of entry.groups) {
@@ -77,7 +77,7 @@
       const cell = document.createElement("td");
       cell.colSpan = 8;
       cell.className = "empty-results";
-      cell.textContent = "沒有符合的詞條，請更換關鍵字、等級或清除篩選。";
+      cell.textContent = "沒有符合的詞條，請更換關鍵字、字首、等級或清除篩選。";
       row.append(cell);
       fragment.append(row);
     }
@@ -90,17 +90,22 @@
 
   function filter() {
     const query = normalize($("word-search").value);
+    const initial = $("initial-filter").value;
     const level = $("level-filter").value;
-    filtered = entries.filter((entry) => normalize(entry.word).includes(query) && (!level || entry.groups.some((group) => group.level === level)));
+    filtered = entries.filter((entry) => normalize(entry.word).includes(query) &&
+      (!initial || normalize(entry.word).startsWith(initial)) &&
+      (!level || entry.groups.some((group) => group.level === level)));
     pageNumber = 1;
     render();
   }
 
   $("filters").addEventListener("submit", (event) => event.preventDefault());
   $("word-search").addEventListener("input", filter);
+  $("initial-filter").addEventListener("change", filter);
   $("level-filter").addEventListener("change", filter);
   $("filters").addEventListener("reset", () => {
     $("word-search").value = "";
+    $("initial-filter").value = "";
     $("level-filter").value = "";
     filter();
   });
@@ -113,6 +118,12 @@
   }
   $("previous-page").addEventListener("click", () => turnPage(-1));
   $("next-page").addEventListener("click", () => turnPage(1));
-  for (const id of ["word-search", "level-filter", "clear-filters"]) $(id).disabled = false;
+  for (const letter of "abcdefghijklmnopqrstuvwxyz") {
+    const option = document.createElement("option");
+    option.value = letter;
+    option.textContent = letter.toUpperCase();
+    $("initial-filter").append(option);
+  }
+  for (const id of ["word-search", "initial-filter", "level-filter", "clear-filters"]) $(id).disabled = false;
   render();
 })();

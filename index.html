@@ -31,6 +31,7 @@
         <div class="panel-heading"><div><h2 id="library-title">詞彙一覽</h2><p>詞性與 CEFR 等級取自你提供的 Oxford PDF；保留同字不同用法的等級配對。</p></div><span class="dictionary-count">5 家英文辭典</span></div>
         <form class="library-filters" id="filters" role="search" aria-label="搜尋詞彙">
           <label class="search-field" for="word-search">搜尋單字<input id="word-search" type="search" placeholder="例如 ability、bank、according to" autocomplete="off" disabled></label>
+          <label for="initial-filter">字首分類<select id="initial-filter" disabled><option value="">全部字首</option></select></label>
           <label for="level-filter">CEFR 等級<select id="level-filter" disabled><option value="">全部等級</option><option>A1</option><option>A2</option><option>B1</option><option>B2</option></select></label>
           <button type="reset" id="clear-filters" disabled>清除篩選</button>
         </form>
@@ -40,13 +41,13 @@
         <div class="table-scroll" role="region" aria-label="常用詞彙表格，可左右捲動" aria-describedby="table-hint" tabindex="0">
           <table>
             <caption class="sr-only">Oxford 3000 詞條、詞性、CEFR 等級及五家英文辭典連結（另開分頁）</caption>
-            <thead><tr><th scope="col">單字／來源</th><th scope="col">詞性</th><th scope="col"><a class="level-guide-link" href="./levels.html">等級 <span class="column-detail">CEFR ↗</span><span class="sr-only">：查看英語分級說明</span></a></th><th scope="col">Oxford</th><th scope="col">Cambridge</th><th scope="col">Longman</th><th scope="col">Collins</th><th scope="col">Merriam-Webster</th></tr></thead>
+            <thead><tr><th scope="col">單字</th><th scope="col">詞性</th><th scope="col"><a class="level-guide-link" href="./levels.html">等級 <span class="column-detail">CEFR ↗</span><span class="sr-only">：查看英語分級說明</span></a></th><th scope="col">Oxford</th><th scope="col">Cambridge</th><th scope="col">Longman</th><th scope="col">Collins</th><th scope="col">Merriam-Webster</th></tr></thead>
             <tbody id="vocabulary-body"></tbody>
           </table>
         </div>
         <div class="table-footer"><span id="results-status" role="status" aria-live="polite">正在載入詞庫…</span><div class="pagination" aria-label="詞庫分頁"><button type="button" id="previous-page" disabled>← 上一頁</button><span id="page-status"></span><button type="button" id="next-page" disabled>下一頁 →</button></div></div>
       </section>
-      <aside class="library-note"><h2>查閱小提醒</h2><p>共 3,000 筆原始詞條，每頁 50 筆，依 PDF 原始順序排列。a、an 合併為一筆；bank 等不同詞義保留為獨立詞條。搜尋會比對整個詞頭，等級篩選會找出包含該等級的詞條，並保留顯示其所有詞性／等級。</p><p>詞性與等級的多行內容逐行對應；詞頭編號、括號說明保留原貌，但辭典查詢只使用單字本身。Oxford 使用官方搜尋入口，以避免猜錯同形詞的詞條編號；其他辭典連結使用各家詞條網址格式，可能需要在站內另選詞義或拼法。</p><p>單字等級不代表整體英語能力。各家詞義分級、連結與可用性由原網站維護，可能受地區或網站存取限制影響。</p></aside>
+      <aside class="library-note"><h2>查閱小提醒</h2><p>共 3,000 筆原始詞條，每頁 50 筆，依 PDF 原始順序排列。a、an 合併為一筆；bank 等不同詞義保留為獨立詞條。字首分類依單字第一個英文字母 A–Z 篩選，可與關鍵字搜尋、CEFR 等級同時使用；「清除篩選」會重設所有條件。等級篩選會找出包含該等級的詞條，並保留顯示其所有詞性／等級。</p><p>詞性與等級的多行內容逐行對應；詞頭編號、括號說明保留原貌，但辭典查詢只使用單字本身。Oxford 使用官方搜尋入口，以避免猜錯同形詞的詞條編號；其他辭典連結使用各家詞條網址格式，可能需要在站內另選詞義或拼法。</p><p>單字等級不代表整體英語能力。各家詞義分級、連結與可用性由原網站維護，可能受地區或網站存取限制影響。</p></aside>
       <footer class="footer"><span><strong>Daily English</strong> · 常用詞彙，慢慢累積。</span><a href="./The_Oxford_3000.pdf" target="_blank" rel="noopener noreferrer">Oxford 3000 原始詞表 ↗<span class="sr-only">（另開分頁）</span></a></footer>
     </main>
   </div>
