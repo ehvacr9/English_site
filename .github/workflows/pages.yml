@@ -28,7 +28,7 @@ jobs:
       - name: Prepare site
         run: |
           mkdir _site
-          cp index.html levels.html styles.css longman_3000_list.pdf _site/
+          cp index.html levels.html styles.css library.js oxford-words.js The_Oxford_3000.pdf longman_3000_list.pdf _site/
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:

@@ -1,47 +1,54 @@
-# Daily English · 常用詞彙庫
+# Daily English · Oxford 3000 常用詞彙庫
 
-繁體中文介面的常用英文詞彙參考頁。原生 HTML、CSS 靜態網站，不需要 JavaScript、套件安裝或建置。
+繁體中文介面的英文詞彙參考網站，以原生 HTML、CSS、JavaScript 製作，不需套件安裝或建置。
 
 - 網站：https://ehvacr9.github.io/English_site/
+- 分級說明：https://ehvacr9.github.io/English_site/levels.html
 - 原始碼：https://github.com/ehvacr9/English_site
 
-## 目前內容
+## 完整詞庫
 
-依使用者提供的詞性與 CEFR 等級，列出以下五筆詞彙，a、an 合併為一筆：
+從使用者提供的 [The_Oxford_3000.pdf](./The_Oxford_3000.pdf) 共 11 頁匯入 **3,000 筆原始詞條、3,308 組詞性／CEFR 配對**，保留 PDF 原始順序。a、an 合併為一筆，不同詞義（例如兩筆 bank）及來源同形詞編號分別保留。
 
-| 單字 | 詞性 | CEFR |
-|---|---|---|
-| a, an | indefinite article | A1 |
-| abandon | v. | B2 |
-| ability | n. | A2 |
-| able | adj. | A2 |
-| about | prep., adv. | A1 |
+- 每頁 50 筆，共 60 頁；搜尋涵蓋整個詞庫，不只目前頁面。
+- 可搜尋單字（忽略大小寫、前後空白與彎／直單引號差異），並依 A1、A2、B1、B2 篩選。
+- 含多種等級的詞條，篩選命中任一等級即可顯示，且保留全部詞性／等級；兩欄的多行內容逐行對應。
+- 例：`academic` 的 `adj.` 是 B1、`n.` 是 B2，不會將兩個詞性誤標成同一級。
+- 每筆附原始 PDF 頁碼連結，以及 Oxford、Cambridge、Longman、Collins、Merriam-Webster 五家官方查閱連結。a、an 各自提供五家連結。
+- 辭典查詢會移除詞頭後方的來源編號與括號說明，保留片語，將彎單引號正規化。Oxford 使用官方搜尋入口，不猜測同形詞的詞條編號；其他辭典採官方詞條網址格式。
+- 辭典可能收錄在其他拼法或詞義下；連結並不保證直接跳到同一詞性或詞義。各家可用性與反自動化限制由原站決定，未逐一在線驗證所有外部頁面。網站不複製辭典釋義。
+- 原生表格、鍵盤可操作的搜尋與分頁，窄螢幕可在表格內左右捲動。
+- 資料未載入時顯示明確警告，不以空詞庫假裝載入成功。停用 JavaScript 時提供 PDF 替代入口。
 
-每筆提供 Oxford Learner's Dictionaries、Cambridge Dictionary、Longman、Collins（使用者原稱 collin）及 Merriam-Webster 官方詞條連結。Oxford 的 a 詞條包含 an，其他四家分別提供 a、an 連結。
+單字練習、發音、每日目標、學習紀錄、會話及測驗不再提供。不再讀寫或清除先前版本的 `localStorage`；舊的 hash 網址仍顯示詞彙庫。
 
-- 等級依使用者提供的資料列示，並非取自 Longman PDF 的 S/W 頻率，也不代表所有辭典或所有詞義均採用相同分級。
-- 所有外部詞條連結另開分頁，提供包含單字、辭典名稱與新分頁提示的無障礙標籤。
-- 保留原生表格語意；窄螢幕可在可鍵盤聚焦的表格區域左右捲動。
-- 外部網站內容、網址與存取政策由各家維護，可能受地區、反自動化或網路限制影響。本頁不複製辭典釋義。
-- 單字練習、發音、每日目標及學習進度介面已移除；先前移除的會話與測驗也不再提供。
-- 舊的 `#words`、`#progress`、`#conversation`、`#quiz` 網址仍會顯示此詞彙庫。網站不再讀寫 `localStorage`，不清除先前版本儲存的紀錄。
+## CEFR 分級說明
 
-## 維護與本機預覽
+[levels.html](./levels.html) 介紹 A1–C2 六級、A／B／C 三大類、概略能力與自擬情境，說明詞彙等級與整體能力、Longman S/W 頻率的差別。附官方延伸閱讀，非程度測驗，不提供固定詞彙量門檻或非官方考試分數換算。
 
-[英語分級說明](./levels.html) 介紹 CEFR 的 A1–C2 六級、A／B／C 三大類、概略理解與表達能力、自擬生活情境，以及詞彙標記與整體能力、S/W 頻率的差別。附 Council of Europe 與 Cambridge English 來源連結；中文摘要為本站整理，非官方逐字譯文或程度測驗。不提供固定詞彙量門檻或非官方考試分數換算。兩頁均有主要導覽，詞彙表的 CEFR 欄位也可前往說明頁。
+## 本機預覽
 
-直接用瀏覽器開啟 [index.html](./index.html)，或以 VS Code 靜態網站預覽工具開啟。不需伺服器即可呈現完整詞彙表格。
+直接開啟 [index.html](./index.html)，或以 VS Code 靜態網站工具預覽。詞庫以 [oxford-words.js](./oxford-words.js) 載入，不使用 `fetch`，因此支援直接開啟本機檔案。共用樣式為 [styles.css](./styles.css)，搜尋、表格與分頁為 [library.js](./library.js)。
 
-新增詞彙時，在 [index.html](./index.html) 的表格加入一列，並同步更新筆數與本文件。樣式位於 [styles.css](./styles.css)。Google Fonts 為可選字型，無網路時自動使用系統字型。
+Google Fonts 是可選字型，無網路時自動使用系統字型。
 
-## 參考 PDF
+## 重新匯入與驗證
 
-[longman_3000_list.pdf](./longman_3000_list.pdf) 由使用者提供，並經使用者確認有權公開後，保存於專案、GitHub 與網站。原文件權利仍屬其權利人，本專案不授予第三方額外轉授權。
+[scripts/import_oxford.py](./scripts/import_oxford.py) 使用 Python 與 PyMuPDF，嚴格解析每頁、跨行條目與詞性／等級群組，未知格式、重複詞頭或數量不等於 3000 時報錯，不略過錯誤。保留來源中的 `noun.` 等原始寫法。
 
-PDF 是常用詞彙參考來源，不是本頁 CEFR 標示的來源。文件共 16 頁；解析第 2–16 頁得到 3591 筆詞性條目、3160 個不重複詞頭（含片語與不同拼法），「3000」為原詞表名稱。
+```powershell
+py scripts\import_oxford.py
+py -m unittest discover -s scripts -p "test_*.py"
+```
 
-先前建立的 [scripts/select_words.py](./scripts/select_words.py) 僅保留作為離線解析工具，不參與網頁、部署或目前五筆詞彙的選擇。需要使用時執行 `py scripts\select_words.py`；依賴 Python 與 PyMuPDF。
+若缺少 PyMuPDF 再執行 `py -m pip install PyMuPDF`。重新匯入會更新產生的 [oxford-words.js](./oxford-words.js)；請勿直接手改這個資料檔。正常瀏覽網站不需要 Python。
+
+## 來源 PDF
+
+使用者提供的 Oxford 與 [Longman PDF](./longman_3000_list.pdf) 均保存於專案、GitHub 與網站。使用者已授權本次複製及公開；原文件權利仍屬其權利人，本專案不授予第三方額外轉授權。
+
+Oxford PDF 是目前單字、詞性與等級的來源。Longman 是補充參考，不作為 CEFR 分級依據；其 16 頁解析為 3591 筆詞性條目、3160 個不重複詞頭。既有 [scripts/select_words.py](./scripts/select_words.py) 僅為 Longman 離線抽樣工具，不參與網頁。
 
 ## GitHub Pages
 
-[部署流程](./.github/workflows/pages.yml) 發布詞彙庫、分級說明頁、共用 CSS 與來源 PDF。推送到 `main` 後自動部署，Pages 的 Source 應設為 **GitHub Actions**。日後修改、提交並執行 `git push origin main` 即可更新，部署狀態可在 repository 的 Actions 查看。
+[部署流程](./.github/workflows/pages.yml) 發布兩個 HTML 頁面、CSS、兩個 JavaScript 檔與兩份 PDF。推送到 `main` 後自動部署，Pages 的 Source 應設為 **GitHub Actions**。修改後提交並執行 `git push origin main` 即可更新，部署狀態可於 Actions 查看。

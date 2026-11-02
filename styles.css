@@ -42,7 +42,7 @@ h2{font-size:16px;font-weight:600;margin:0}
 .panel-heading p{font-size:11px;color:var(--muted);margin:8px 0 0}
 .dictionary-count{font-size:10px;color:#817597;white-space:nowrap}
 .table-hint{margin:15px 26px 20px;font-size:11px;color:var(--muted)}
-.table-scroll{overflow-x:auto;margin:0 1px}
+.table-scroll{position:relative;overflow-x:auto;margin:0 1px}
 table{width:100%;border-collapse:collapse;min-width:1060px;text-align:left}
 th,td{padding:21px 17px;border-bottom:1px solid var(--line);vertical-align:middle}
 thead{background:#f6f5fb}
@@ -56,6 +56,26 @@ td small{display:block;color:var(--muted);font-size:10px;margin-top:5px}
 td a{display:inline-block;font-size:11px;color:#6554a4;white-space:nowrap;text-decoration:underline;text-decoration-color:#cfc5e4;text-underline-offset:4px;padding:6px 0}
 td a:hover{color:#44307b;text-decoration-color:currentColor}
 .variant-links a{display:block}
+.library-filters{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;margin:22px 26px 0}
+.library-filters label{display:flex;flex-direction:column;gap:7px;font-size:11px;color:#686077}
+.search-field{flex:1;min-width:180px}
+input,select,button{font:inherit}
+.library-filters input,.library-filters select{border:1px solid #dcd7e8;border-radius:7px;background:#fff;color:var(--ink);padding:10px 12px;min-height:40px;width:100%}
+button{cursor:pointer;border:1px solid #dcd7e8;border-radius:7px;background:#f6f3fc;color:#6554a4;padding:9px 13px;font-size:11px}
+button:hover:not(:disabled){background:#ece6fa}
+button:disabled{opacity:.5;cursor:default}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #6255cf;outline-offset:3px}
+.pagination{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.table-footer{align-items:center}
+.library-error{margin:18px 26px;padding:14px;background:#fff0ec;color:#944335;border:1px solid #edc4bb;border-radius:8px;font-size:12px}
+[hidden]{display:none!important}
+.empty-results{text-align:center;padding:35px;color:var(--muted)}
+#vocabulary-body th>span{display:block;font-size:20px;max-width:210px;white-space:normal}
+#vocabulary-body th>a{display:block;font:10px "Noto Sans TC",system-ui,sans-serif;color:#74628e;text-decoration:underline;margin-top:8px}
+#vocabulary-body td>a{display:block}
+.pos-group,.level-group{min-height:35px;display:flex;align-items:center}
+.pos-group{white-space:nowrap}
+@media(max-width:700px){.library-filters{margin:18px 18px 0;gap:10px}.search-field{flex-basis:100%}.pagination{gap:8px}.pagination button{padding:9px}.library-error{margin:18px}}
 .level{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.5px;padding:4px 10px;border-radius:6px}
 .level-a1{background:#eaf3ed;color:#447557}
 .level-a2{background:#edf0fb;color:#5266a1}
