@@ -1,57 +1,45 @@
-# Daily English · 英語日常
+# Daily English · 常用詞彙庫
 
-以 Longman Communication 3000 為出發點的繁體中文英語學習網站。使用原生 HTML、CSS、JavaScript，不需安裝套件或建置。
+繁體中文介面的常用英文詞彙參考頁。原生 HTML、CSS 靜態網站，不需要 JavaScript、套件安裝或建置。
 
 - 網站：https://ehvacr9.github.io/English_site/
 - 原始碼：https://github.com/ehvacr9/English_site
 
-## 目前功能
+## 目前內容
 
-- **首批隨機五字**：從使用者提供的完整 PDF 詞表去重後，以 Python `random.SystemRandom().sample` 無重複抽選：washing、studio、solution、product、basically。
-- **固定這組練習**：目前只提供這五個單字，不會隨重新整理或日期變更而換字。依需求先完成五字教材，完整詞庫的每日隨機抽選尚未啟用。
-- **單字卡片**：中文、音標、詞性、口語／書面頻率、中英例句、單字及完整例句發音、PDF 原始頁面連結。
-- **學習紀錄**：今日五字進度、連續學習天數、最近七天單字練習數與單字收藏。
-- 會話與每日測驗已移除，舊的 `#conversation`、`#quiz` 網址會顯示學習總覽。
-- 響應式版面、鍵盤操作、狀態通知與減少動態效果支援。
+依使用者提供的詞性與 CEFR 等級，列出以下五筆詞彙，a、an 合併為一筆：
 
-## 教材來源
+| 單字 | 詞性 | CEFR |
+|---|---|---|
+| a, an | indefinite article | A1 |
+| abandon | v. | B2 |
+| ability | n. | A2 |
+| able | adj. | A2 |
+| about | prep., adv. | A1 |
 
-[longman_3000_list.pdf](./longman_3000_list.pdf) 由使用者提供，並經使用者確認有權公開後，複製至專案、GitHub 與網站。原始單字、詞性與頻率標記來自該 PDF；本站新增的中文、音標、英文例句與翻譯為另行編寫，並非 PDF 原有內容。原文件權利仍屬其權利人，本專案不授予第三方額外轉授權。
+每筆提供 Oxford Learner's Dictionaries、Cambridge Dictionary、Longman、Collins（使用者原稱 collin）及 Merriam-Webster 官方詞條連結。Oxford 的 a 詞條包含 an，其他四家分別提供 a、an 連結。
 
-PDF 共 16 頁。解析第 2–16 頁得到 **3591 筆詞性條目、3160 個不重複詞頭**，包含片語與不同拼法；「3000」是來源詞表名稱，不將實際解析數硬湊成 3000。每個詞頭抽選機率相同，多詞性不會增加中選機率。
+- 等級依使用者提供的資料列示，並非取自 Longman PDF 的 S/W 頻率，也不代表所有辭典或所有詞義均採用相同分級。
+- 所有外部詞條連結另開分頁，提供包含單字、辭典名稱與新分頁提示的無障礙標籤。
+- 保留原生表格語意；窄螢幕可在可鍵盤聚焦的表格區域左右捲動。
+- 外部網站內容、網址與存取政策由各家維護，可能受地區、反自動化或網路限制影響。本頁不複製辭典釋義。
+- 單字練習、發音、每日目標及學習進度介面已移除；先前移除的會話與測驗也不再提供。
+- 舊的 `#words`、`#progress`、`#conversation`、`#quiz` 網址仍會顯示此詞彙庫。網站不再讀寫 `localStorage`，不清除先前版本儲存的紀錄。
 
-| 首批單字 | 詞性 | 頻率 | PDF 頁碼 |
-|---|---|---|---|
-| washing | n | S2 | 16 |
-| studio | n | S3, W2 | 14 |
-| solution | n | S2, W1 | 13 |
-| product | n | S1, W1 | 11 |
-| basically | adv | S1 | 3 |
+## 維護與本機預覽
 
-S 為口語、W 為書面頻率；1、2、3 分別表示前 1000、2000、3000 名。不應將整份詞表視為單一 CEFR 等級。
+直接用瀏覽器開啟 [index.html](./index.html)，或以 VS Code 靜態網站預覽工具開啟。不需伺服器即可呈現完整詞彙表格。
 
-### 檢查詞表或重新抽樣（開發用途）
+新增詞彙時，在 [index.html](./index.html) 的表格加入一列，並同步更新筆數與本文件。樣式位於 [styles.css](./styles.css)。Google Fonts 為可選字型，無網路時自動使用系統字型。
 
-[scripts/select_words.py](./scripts/select_words.py) 使用 Python 與 PyMuPDF，嚴格解析每個條目，遇到未知格式直接報錯。合併多詞性詞頭，將彎引號正規化為直引號，並保留 PDF 中未標詞性的 `to` 條目。
+## 參考 PDF
 
-```powershell
-py scripts\select_words.py
-```
+[longman_3000_list.pdf](./longman_3000_list.pdf) 由使用者提供，並經使用者確認有權公開後，保存於專案、GitHub 與網站。原文件權利仍屬其權利人，本專案不授予第三方額外轉授權。
 
-若執行時缺少 PyMuPDF，再以 `py -m pip install PyMuPDF` 安裝。程式只在終端輸出統計與新抽樣，不會改寫網站教材或學習紀錄。更換首批教材時仍需補齊中文、音標、例句、翻譯與來源頁碼，再更新 [app.js](./app.js) 及畫面文案。
+PDF 是常用詞彙參考來源，不是本頁 CEFR 標示的來源。文件共 16 頁；解析第 2–16 頁得到 3591 筆詞性條目、3160 個不重複詞頭（含片語與不同拼法），「3000」為原詞表名稱。
 
-## 本機使用與資料保存
-
-直接用瀏覽器開啟 [index.html](./index.html)，或用 VS Code 靜態網站預覽工具。建議透過 HTTP 預覽，讓儲存行為與正式網站一致。
-
-- 不需帳號，沒有後端或跨裝置同步。進度存於目前瀏覽器及網站來源的 `localStorage`，鍵值沿用 `daily-english-v1`。
-- 保留先前版本的單字與歷史日期紀錄。舊會話／測驗欄位保留但不再顯示或新增，原本有學習的日期仍可延續連續天數；今天的五字目標只計算目前這組單字。
-- 每天可重複練習這組五字，同一天每字只計一次，累積已學單字也不重複計數。七天圖表上限為每日五字。
-- 日期以裝置本地日期計算；今天尚未開始時，連續天數保留到昨天。跨日後操作或回到頁面時更新每日目標。
-- 清除網站資料或更換瀏覽器會失去紀錄。儲存錯誤會顯示警告；無法辨識的資料不會被覆寫。
-- 發音使用瀏覽器 Web Speech API，語音、網路需求與支援程度依裝置而異。失敗會顯示提示；沒有錄音或口說評分。
-- Google Fonts 是可選的外部字型；無網路時自動使用系統字型，核心功能不依賴該服務。
+先前建立的 [scripts/select_words.py](./scripts/select_words.py) 僅保留作為離線解析工具，不參與網頁、部署或目前五筆詞彙的選擇。需要使用時執行 `py scripts\select_words.py`；依賴 Python 與 PyMuPDF。
 
 ## GitHub Pages
 
-[部署流程](./.github/workflows/pages.yml) 僅發布 HTML、CSS、JavaScript 與來源 PDF。推送到 `main` 後自動部署，Pages 的 Source 應設為 **GitHub Actions**。日後修改後提交並執行 `git push origin main` 即可更新，部署狀態可在 repository 的 Actions 查看。
+[部署流程](./.github/workflows/pages.yml) 僅發布 HTML、CSS 與來源 PDF。推送到 `main` 後自動部署，Pages 的 Source 應設為 **GitHub Actions**。日後修改、提交並執行 `git push origin main` 即可更新，部署狀態可在 repository 的 Actions 查看。

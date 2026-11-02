@@ -4,10 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#7772e8">
-  <meta name="description" content="Daily English 英語日常：以 Longman Communication 3000 為起點，從五個隨機抽選的常用單字開始，搭配中文、原創例句與英語發音。">
-  <title>Daily English｜讓英語成為日常</title>
+  <meta name="description" content="Daily English 常用詞彙庫：查閱單字、詞性、CEFR 等級，以及 Oxford、Cambridge、Longman、Collins 與 Merriam-Webster 英文辭典。">
+  <title>常用詞彙庫｜Daily English 英語日常</title>
   <link rel="stylesheet" href="./styles.css">
-  <script src="./app.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">跳到主要內容</a>
@@ -16,77 +15,72 @@
       <span class="brand-icon">d<span>e.</span></span>
       <span>Daily English<small>英語日常</small></span>
     </a>
-    <span class="nav-label">你的學習空間</span>
+    <span class="nav-label">你的英語資料庫</span>
     <nav aria-label="主要導覽">
-      <button class="nav-item active" data-view="home" aria-current="page"><span aria-hidden="true">▦</span>學習總覽</button>
-      <button class="nav-item" data-view="words"><span aria-hidden="true">▤</span>單字練習<span class="nav-badge">5</span></button>
-      <button class="nav-item" data-view="progress"><span aria-hidden="true">▥</span>學習紀錄</button>
+      <a class="nav-item active" href="./index.html" aria-current="page"><span aria-hidden="true">▤</span>常用詞彙庫<span class="nav-badge">5</span></a>
+      <a class="nav-item" href="./longman_3000_list.pdf" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span>Longman 3000 詞表<span class="sr-only">（另開分頁）</span></a>
     </nav>
-    <div class="sidebar-tip">
-      <span class="tip-spark" aria-hidden="true">✦</span>
-      <strong>小小進步，大大不同</strong>
-      <p>不用一次學很多，<br>每天練習就是最好的開始。</p>
-      <button class="text-button" id="tip-start">開始今天的練習 <span aria-hidden="true">↗</span></button>
-    </div>
-    <div class="sidebar-bottom"><span class="status-dot"></span>為更好的自己，持續學習</div>
+    <div class="sidebar-note"><span aria-hidden="true">✦</span><strong>從常用詞彙開始</strong><p>比較不同辭典的解釋、發音與用法，建立自己的英語知識庫。</p></div>
   </aside>
-
   <div class="workspace">
-    <header class="topbar">
-      <div class="breadcrumb">我的學習空間 <span>/</span> <strong id="breadcrumb-current">學習總覽</strong></div>
-      <div class="topbar-right"><span class="today-date" id="today-date"></span><span class="avatar" aria-label="本機學習者">L</span></div>
-    </header>
+    <header class="topbar"><div class="breadcrumb">我的英語資料庫 <span>/</span> <strong>常用詞彙庫</strong></div><span class="header-label">VOCABULARY LIBRARY</span></header>
     <main id="main" tabindex="-1">
-      <div id="storage-notice" class="notice" role="alert" hidden></div>
-      <section id="view-home" class="view">
-        <div class="page-heading">
-          <div><div class="eyebrow">A LITTLE EVERY DAY</div><h1>讓英語，成為你的日常 <span class="wave" aria-hidden="true">✦</span></h1><p>從最常用的單字開始，一次專心學五個。</p></div>
-          <span class="level-pill"><span></span> Longman Communication 3000</span>
+      <div class="page-heading"><div><div class="eyebrow">WORDS WORTH KNOWING</div><h1>最常用詞彙庫</h1><p>從常用單字出發，一次查閱五家英文辭典。</p></div><span class="entry-count">首批 5 筆詞彙</span></div>
+      <section class="library-panel" aria-labelledby="library-title">
+        <div class="panel-heading"><div><h2 id="library-title">詞彙一覽</h2><p>詞性與 CEFR 等級依你提供的資料列示；a、an 合併為一筆。</p></div><span class="dictionary-count">5 家英文辭典</span></div>
+        <p class="table-hint" id="table-hint">點選辭典名稱可另開分頁查看詞條。窄螢幕可在表格內左右捲動。</p>
+        <div class="table-scroll" role="region" aria-label="常用詞彙表格，可左右捲動" aria-describedby="table-hint" tabindex="0">
+          <table>
+            <caption class="sr-only">首批五筆常用詞彙的單字、詞性、CEFR 等級及五家英文辭典連結（另開分頁）</caption>
+            <thead><tr><th scope="col">單字</th><th scope="col">詞性</th><th scope="col">等級 <span class="column-detail">CEFR</span></th><th scope="col">Oxford</th><th scope="col">Cambridge</th><th scope="col">Longman</th><th scope="col">Collins</th><th scope="col">Merriam-Webster</th></tr></thead>
+            <tbody>
+              <tr>
+                <th scope="row" lang="en">a, an</th><td><span lang="en">indefinite article</span><small>不定冠詞</small></td><td><span class="level level-a1">A1</span></td>
+                <td><a href="https://www.oxfordlearnersdictionaries.com/definition/english/a_1" target="_blank" rel="noopener noreferrer" aria-label="a、an：Oxford 辭典（另開分頁）">Oxford ↗</a></td>
+                <td class="variant-links"><a href="https://dictionary.cambridge.org/dictionary/english/a" target="_blank" rel="noopener noreferrer" aria-label="a：Cambridge 辭典（另開分頁）">Cambridge · a ↗</a><a href="https://dictionary.cambridge.org/dictionary/english/an" target="_blank" rel="noopener noreferrer" aria-label="an：Cambridge 辭典（另開分頁）">Cambridge · an ↗</a></td>
+                <td class="variant-links"><a href="https://www.ldoceonline.com/dictionary/a" target="_blank" rel="noopener noreferrer" aria-label="a：Longman 辭典（另開分頁）">Longman · a ↗</a><a href="https://www.ldoceonline.com/dictionary/an" target="_blank" rel="noopener noreferrer" aria-label="an：Longman 辭典（另開分頁）">Longman · an ↗</a></td>
+                <td class="variant-links"><a href="https://www.collinsdictionary.com/dictionary/english/a" target="_blank" rel="noopener noreferrer" aria-label="a：Collins 辭典（另開分頁）">Collins · a ↗</a><a href="https://www.collinsdictionary.com/dictionary/english/an" target="_blank" rel="noopener noreferrer" aria-label="an：Collins 辭典（另開分頁）">Collins · an ↗</a></td>
+                <td class="variant-links"><a href="https://www.merriam-webster.com/dictionary/a" target="_blank" rel="noopener noreferrer" aria-label="a：Merriam-Webster 辭典（另開分頁）">Merriam-Webster · a ↗</a><a href="https://www.merriam-webster.com/dictionary/an" target="_blank" rel="noopener noreferrer" aria-label="an：Merriam-Webster 辭典（另開分頁）">Merriam-Webster · an ↗</a></td>
+              </tr>
+              <tr>
+                <th scope="row" lang="en">abandon</th><td><span lang="en">v.</span><small>動詞</small></td><td><span class="level level-b2">B2</span></td>
+                <td><a href="https://www.oxfordlearnersdictionaries.com/definition/english/abandon_1" target="_blank" rel="noopener noreferrer" aria-label="abandon：Oxford 辭典（另開分頁）">Oxford ↗</a></td>
+                <td><a href="https://dictionary.cambridge.org/dictionary/english/abandon" target="_blank" rel="noopener noreferrer" aria-label="abandon：Cambridge 辭典（另開分頁）">Cambridge ↗</a></td>
+                <td><a href="https://www.ldoceonline.com/dictionary/abandon" target="_blank" rel="noopener noreferrer" aria-label="abandon：Longman 辭典（另開分頁）">Longman ↗</a></td>
+                <td><a href="https://www.collinsdictionary.com/dictionary/english/abandon" target="_blank" rel="noopener noreferrer" aria-label="abandon：Collins 辭典（另開分頁）">Collins ↗</a></td>
+                <td><a href="https://www.merriam-webster.com/dictionary/abandon" target="_blank" rel="noopener noreferrer" aria-label="abandon：Merriam-Webster 辭典（另開分頁）">Merriam-Webster ↗</a></td>
+              </tr>
+              <tr>
+                <th scope="row" lang="en">ability</th><td><span lang="en">n.</span><small>名詞</small></td><td><span class="level level-a2">A2</span></td>
+                <td><a href="https://www.oxfordlearnersdictionaries.com/definition/english/ability" target="_blank" rel="noopener noreferrer" aria-label="ability：Oxford 辭典（另開分頁）">Oxford ↗</a></td>
+                <td><a href="https://dictionary.cambridge.org/dictionary/english/ability" target="_blank" rel="noopener noreferrer" aria-label="ability：Cambridge 辭典（另開分頁）">Cambridge ↗</a></td>
+                <td><a href="https://www.ldoceonline.com/dictionary/ability" target="_blank" rel="noopener noreferrer" aria-label="ability：Longman 辭典（另開分頁）">Longman ↗</a></td>
+                <td><a href="https://www.collinsdictionary.com/dictionary/english/ability" target="_blank" rel="noopener noreferrer" aria-label="ability：Collins 辭典（另開分頁）">Collins ↗</a></td>
+                <td><a href="https://www.merriam-webster.com/dictionary/ability" target="_blank" rel="noopener noreferrer" aria-label="ability：Merriam-Webster 辭典（另開分頁）">Merriam-Webster ↗</a></td>
+              </tr>
+              <tr>
+                <th scope="row" lang="en">able</th><td><span lang="en">adj.</span><small>形容詞</small></td><td><span class="level level-a2">A2</span></td>
+                <td><a href="https://www.oxfordlearnersdictionaries.com/definition/english/able" target="_blank" rel="noopener noreferrer" aria-label="able：Oxford 辭典（另開分頁）">Oxford ↗</a></td>
+                <td><a href="https://dictionary.cambridge.org/dictionary/english/able" target="_blank" rel="noopener noreferrer" aria-label="able：Cambridge 辭典（另開分頁）">Cambridge ↗</a></td>
+                <td><a href="https://www.ldoceonline.com/dictionary/able" target="_blank" rel="noopener noreferrer" aria-label="able：Longman 辭典（另開分頁）">Longman ↗</a></td>
+                <td><a href="https://www.collinsdictionary.com/dictionary/english/able" target="_blank" rel="noopener noreferrer" aria-label="able：Collins 辭典（另開分頁）">Collins ↗</a></td>
+                <td><a href="https://www.merriam-webster.com/dictionary/able" target="_blank" rel="noopener noreferrer" aria-label="able：Merriam-Webster 辭典（另開分頁）">Merriam-Webster ↗</a></td>
+              </tr>
+              <tr>
+                <th scope="row" lang="en">about</th><td><span lang="en">prep., adv.</span><small>介系詞、副詞</small></td><td><span class="level level-a1">A1</span></td>
+                <td><a href="https://www.oxfordlearnersdictionaries.com/definition/english/about" target="_blank" rel="noopener noreferrer" aria-label="about：Oxford 辭典（另開分頁）">Oxford ↗</a></td>
+                <td><a href="https://dictionary.cambridge.org/dictionary/english/about" target="_blank" rel="noopener noreferrer" aria-label="about：Cambridge 辭典（另開分頁）">Cambridge ↗</a></td>
+                <td><a href="https://www.ldoceonline.com/dictionary/about" target="_blank" rel="noopener noreferrer" aria-label="about：Longman 辭典（另開分頁）">Longman ↗</a></td>
+                <td><a href="https://www.collinsdictionary.com/dictionary/english/about" target="_blank" rel="noopener noreferrer" aria-label="about：Collins 辭典（另開分頁）">Collins ↗</a></td>
+                <td><a href="https://www.merriam-webster.com/dictionary/about" target="_blank" rel="noopener noreferrer" aria-label="about：Merriam-Webster 辭典（另開分頁）">Merriam-Webster ↗</a></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <section class="hero" aria-labelledby="hero-title">
-          <div class="hero-copy"><span class="hero-label">FIVE WORDS, ONE SMALL STEP</span><h2 id="hero-title">從五個單字，<br>開始你的英語日常。</h2><p>從 Longman 3000 詞表隨機抽選的首批五字。<br>讀例句、聽發音，把單字慢慢變熟悉。</p><button class="button button-dark" data-go="words">開始五字練習 <span aria-hidden="true">↗</span></button><span class="hero-footnote">首批固定練習 · 重新整理不會換字</span></div>
-          <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="floating-note note-top">Hello, possibilities. <span>✦</span></div><div class="book"><div class="book-spine"></div><div class="book-title">A little<br>better,<br><em>every day.</em></div><div class="book-bottom">THE ENGLISH JOURNEY <span>↗</span></div></div><div class="floating-note note-bottom"><span class="note-check">✓</span> Small steps. Big dreams.</div><span class="art-spark spark-one">✦</span><span class="art-spark spark-two">✳</span></div>
-        </section>
-        <section class="stats-grid" aria-label="學習概況">
-          <article class="stat-card"><span class="stat-icon peach" aria-hidden="true">♨</span><div><span class="stat-label">連續學習</span><div><strong id="streak-count">0</strong><span class="stat-unit">天</span></div></div><span class="stat-aside">保持你的節奏</span></article>
-          <article class="stat-card"><span class="stat-icon lavender" aria-hidden="true">▤</span><div><span class="stat-label">已學單字</span><div><strong id="learned-count">0</strong><span class="stat-unit">個</span></div></div><span class="stat-aside">一點一滴累積</span></article>
-          <article class="stat-card"><span class="stat-icon mint" aria-hidden="true">✓</span><div><span class="stat-label">今日五字進度</span><div><strong id="task-count">0</strong><span class="stat-unit">/ 5 個</span></div></div><div class="mini-progress"><span id="task-bar"></span></div></article>
-        </section>
-        <div class="dashboard-columns">
-          <div>
-            <div class="section-heading"><h2>先從這五個單字開始</h2><span>一組單字，反覆練習</span></div>
-            <div class="course-grid">
-              <button class="course-card" data-go="words"><div class="course-art vocab-art" aria-hidden="true"><span class="letter-card letter-a">Aa</span><span class="letter-card letter-b">Bb</span><span class="mini-spark">✦</span></div><div class="course-info"><span class="course-tag purple-text">BUILD YOUR VOCABULARY</span><h3>五字練習 <span>↗</span></h3><p>washing · studio · solution · product · basically</p><div class="course-meta"><span>中文解釋與原創例句</span><span>單字／例句發音</span></div></div></button>
-              <a class="course-card" href="./longman_3000_list.pdf" target="_blank" rel="noopener"><div class="course-art source-art" aria-hidden="true"><span class="source-number">3000<small>LONGMAN COMMUNICATION</small></span></div><div class="course-info"><span class="course-tag green-text">OUR STARTING POINT</span><h3>常用單字來源 <span>↗</span></h3><p>查看你提供的 Longman 3000 原始詞表。</p><div class="course-meta"><span>PDF · 16 頁</span><span>另開分頁</span></div></div></a>
-            </div>
-            <div class="daily-quote"><span aria-hidden="true">“</span><div><p>Five words today.<br>A little more confidence tomorrow.</p><small>今天多認識五個單字，明天多一點自信。</small></div><span class="quote-tag">給今天的你</span></div>
-          </div>
-          <aside class="daily-panel"><div class="section-heading"><h2>今日小目標</h2><span class="date-pill">TODAY</span></div><p class="panel-intro">先認識，再跟讀，最後記住。</p><ul class="goal-list"><li><span class="goal-check" id="goal-words">0</span><div><strong>練習首批 5 個單字</strong><small id="goal-status">已完成 0 / 5 個</small></div><button data-go="words" aria-label="前往單字練習">↗</button></li></ul><p class="source-note">這一版先固定首批五字，不會每日換字。完整詞庫的每日隨機抽選將於後續擴充。</p><div class="goal-footer"><span aria-hidden="true">✧</span><p>學習不是比誰快，<br><strong>是比昨天的自己多走一步。</strong></p></div></aside>
-        </div>
+        <div class="table-footer"><span>共 5 筆詞彙 · 依字母排序</span><span>A1 入門 · A2 基礎 · B2 中高級</span></div>
       </section>
-
-      <section id="view-words" class="view" hidden>
-        <div class="page-heading"><div><div class="eyebrow">ONE WORD AT A TIME</div><h1>把單字，變成你的朋友。</h1><p>首批隨機五字：先翻面認識，再聽例句；熟悉後按「我記住了」。</p></div><span class="level-pill">Longman 3000 · 首批五字</span></div>
-        <div class="learning-layout">
-          <div class="flashcard-panel">
-            <div class="section-heading"><h2>單字卡片</h2><span id="word-position"></span></div>
-            <button id="flashcard" class="flashcard" aria-label="翻面查看單字中文解釋"><span class="word-category" id="word-category"></span><strong id="word-text"></strong><span id="word-phonetic"></span><span class="word-meaning" id="word-meaning" hidden></span><span class="flip-hint" id="flip-hint">點一下，看看中文意思 ↻</span></button>
-            <div class="word-example"><p id="word-example" lang="en"></p><small id="word-translation"></small><div><button class="listen-button" id="speak-example">♪ 聽例句</button></div></div>
-            <a class="word-source" id="word-source" href="./longman_3000_list.pdf" target="_blank" rel="noopener">查看原始詞表 ↗</a>
-            <div class="word-actions"><button class="button button-light" id="prev-word">← 上一個</button><button class="button button-light" id="speak-word">聽發音 ♪</button><button class="button button-primary" id="learn-word">我記住了 ✓</button><button class="button button-light" id="next-word">下一個 →</button></div>
-            <p class="inline-status" id="word-status" role="status"></p>
-          </div>
-          <aside class="learning-note"><span class="eyebrow">A SMALL TIP</span><h2>不只背單字，<br>也記住它的用法。</h2><p>跟著例句讀一次，試著換成自己的生活經驗。當單字有了畫面，就更容易記住。</p><div class="note-divider"></div><p>今日目標 <strong id="word-daily-count">0 / 5</strong></p><p class="muted">S 表示口語頻率，W 表示書面頻率；1、2、3 分別代表前 1000、2000、3000 名。詞性與頻率取自原始 PDF，中文、音標與例句為另行編寫。</p><p class="muted">發音使用瀏覽器的英語語音；可用性與聲音依裝置而異。</p></aside>
-        </div>
-      </section>
-
-      <section id="view-progress" class="view" hidden>
-        <div class="page-heading"><div><div class="eyebrow">LOOK HOW FAR YOU'VE COME</div><h1>每一小步，都算數。</h1><p>你的紀錄保存在目前的瀏覽器，不需要登入。先前版本的單字紀錄也會保留。</p></div></div>
-        <div class="progress-summary" id="progress-summary"></div>
-        <article class="record-panel"><div class="section-heading"><h2>最近 7 天</h2><span>每日單字練習 / 5</span></div><div class="week-chart" id="week-chart"></div></article>
-        <article class="record-panel"><h2>我的單字收藏</h2><div id="learned-list" class="learned-list"></div></article>
-      </section>
-      <footer class="footer"><span><strong>Daily English</strong> · 每天一點，走得更遠。</span><span>Made for your everyday growth <span class="footer-spark">✦</span></span></footer>
+      <aside class="library-note"><h2>查閱小提醒</h2><p>本頁等級採用你提供的標示，不代表五家辭典對所有詞義的分級相同。Oxford 將 a、an 收錄於同一詞條，其餘辭典提供分別查閱連結。</p><p>辭典連結前往各家官方網站，內容與可用性由該網站維護，可能受地區或網站存取限制影響。</p></aside>
+      <footer class="footer"><span><strong>Daily English</strong> · 常用詞彙，慢慢累積。</span><a href="./longman_3000_list.pdf" target="_blank" rel="noopener noreferrer">Longman 3000 參考詞表 ↗<span class="sr-only">（另開分頁）</span></a></footer>
     </main>
   </div>
 </body>
