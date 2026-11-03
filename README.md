@@ -63,7 +63,7 @@ py scripts\import_oxford_links.py "C:\path\oxford-wordlist.html" --entries "C:\p
 
 Oxford PDF 提供既有單字、詞性與 CEFR 等級。Longman 16 頁解析為 3591 筆詞性條目、3160 個不重複詞頭，其中 **2,582 個已由 Oxford 收錄而跳過，578 個加入**。比對以 Oxford `terms` 為準（已去除同形詞編號、括號註記，拆開 a、an），忽略大小寫、彎／直引號及多餘空白。不合併不同拼法；已存在的詞整筆跳過，不補入其 Longman 詞性或頻率，也不覆寫 Oxford 資料。
 
-新增詞彙保留 Longman 原有詞性，已移除網站及產生資料檔中的 S/W 頻率。合併詞性拆開為各自一行，以便正確配對 Cambridge 等級；單字下方仍標示 Longman 詞表來源，不重新加入逐筆 PDF 頁碼連結。原始 PDF 與離線解析器保留原貌。
+新增詞彙保留 Longman 原有詞性，已移除網站及產生資料檔中的 S/W 頻率。合併詞性拆開為各自一行，以便正確配對 Cambridge 等級；單字欄只顯示單字，不標示辭典來源，也不重新加入逐筆 PDF 頁碼連結。等級欄的 Cambridge 來源標示與各家辭典連結保留，原始 PDF 與離線解析器保留原貌。
 
 ### Cambridge CEFR 補級
 

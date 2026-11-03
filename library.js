@@ -54,10 +54,6 @@
       text.lang = "en";
       text.textContent = entry.word;
       word.append(text);
-      const source = document.createElement("small");
-      source.className = "word-source-label";
-      source.textContent = entry.source || "Oxford";
-      word.append(source);
       const pos = document.createElement("td");
       const levels = document.createElement("td");
       for (const group of entry.groups) {
