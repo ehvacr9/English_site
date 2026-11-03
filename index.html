@@ -11,7 +11,7 @@
   <script src="./oxford-links.js" defer></script>
   <script src="./longman-words.js?v=cambridge-cefr" defer></script>
   <script src="./wordlist-membership.js?v=source-3000" defer></script>
-  <script src="./library.js?v=no-cefr-column" defer></script>
+  <script src="./library.js?v=wordlist-symbols" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">跳到主要內容</a>
@@ -38,7 +38,7 @@
           <label for="level-filter">CEFR 等級<select id="level-filter" disabled><option value="">全部等級</option><option>A1</option><option>A2</option><option>B1</option><option>B2</option><option>C1</option><option>C2</option><option value="ungraded">未提供</option></select></label>
           <button type="reset" id="clear-filters" disabled>清除篩選</button>
         </form>
-        <p class="table-hint" id="table-hint">辭典連結另開分頁；同形詞請在辭典內選擇對應詞義。窄螢幕可在表格內左右捲動。</p>
+        <p class="table-hint" id="table-hint">Oxford 欄的紫色 ●、Longman 欄的綠色 ◆ 表示單字出現在對應的上傳 3000 詞表；標記只代表詞表收錄，不代表外部辭典特定詞義。辭典連結另開分頁；窄螢幕可在表格內左右捲動。</p>
         <p class="library-error" id="library-error" role="alert" hidden></p>
         <noscript><p class="library-error">請啟用 JavaScript 以使用完整詞庫、搜尋與分頁，或直接開啟 <a href="./The_Oxford_3000.pdf">Oxford 3000 PDF 詞表</a>。</p></noscript>
         <div class="table-scroll" role="region" aria-label="常用詞彙表格，可左右捲動" aria-describedby="table-hint" tabindex="0">

@@ -46,13 +46,11 @@
     return link;
   }
 
-  function appendWordlistBadge(cell, source, entry) {
+  function markWordlistLink(link, source, entry) {
     if (!wordlistMembership[entry.word][source]) return;
-    const badge = document.createElement("small");
-    badge.className = "wordlist-badge";
-    badge.textContent = `${source === "oxford" ? "Oxford" : "Longman"} 3000 收錄`;
-    badge.title = `此單字有出現在上傳的 ${source === "oxford" ? "Oxford" : "Longman"} 3000 詞表。`;
-    cell.append(badge);
+    link.classList.add(`wordlist-${source}-included`);
+    link.title = `此單字有出現在上傳的 ${source === "oxford" ? "Oxford" : "Longman"} 3000 詞表。`;
+    link.setAttribute("aria-label", `出現在上傳的 ${source === "oxford" ? "Oxford" : "Longman"} 3000 詞表。${link.getAttribute("aria-label")}`);
   }
 
   function render() {
@@ -81,21 +79,24 @@
         const cell = document.createElement("td");
         if (dictionary.name === "Oxford") {
           for (const link of entry.oxfordLinks || oxfordLinks[entry.word]) {
-            const label = `${entry.terms.length > 1 ? `${link.term} · ` : ""}${link.pos}`;
-            cell.append(externalLink(`Oxford · ${label} ↗`, link.url, `${entry.word}：Oxford ${link.term} ${link.pos}`));
+            const anchor = externalLink("Oxford ↗", link.url, `${entry.word}：Oxford ${link.term} ${link.pos}`);
+            markWordlistLink(anchor, "oxford", entry);
+            cell.append(anchor);
           }
           if (entry.oxfordSearch) {
             const term = entry.terms[0];
-            cell.append(externalLink("Oxford · 搜尋其他詞性 ↗", `https://www.oxfordlearnersdictionaries.com/search/english/?q=${encodeURIComponent(term)}`, `${entry.word}：Oxford 搜尋未核對的詞性`));
+            const anchor = externalLink("Oxford 搜尋 ↗", `https://www.oxfordlearnersdictionaries.com/search/english/?q=${encodeURIComponent(term)}`, `${entry.word}：Oxford 搜尋未核對的詞性`);
+            markWordlistLink(anchor, "oxford", entry);
+            cell.append(anchor);
           }
         } else {
           for (const term of entry.terms) {
             const url = dictionary.name === "Cambridge" && entry.cambridge ? entry.cambridge.url : dictionary.url(term);
-            cell.append(externalLink(`${dictionary.name}${entry.terms.length > 1 ? ` · ${term}` : ""} ↗`, url, `${entry.word}：${dictionary.name} 查詢 ${term}`));
+            const anchor = externalLink(`${dictionary.name}${entry.terms.length > 1 ? ` · ${term}` : ""} ↗`, url, `${entry.word}：${dictionary.name} 查詢 ${term}`);
+            if (dictionary.name === "Longman") markWordlistLink(anchor, "longman", entry);
+            cell.append(anchor);
           }
         }
-        if (dictionary.name === "Oxford") appendWordlistBadge(cell, "oxford", entry);
-        if (dictionary.name === "Longman") appendWordlistBadge(cell, "longman", entry);
         row.append(cell);
       }
       fragment.append(row);

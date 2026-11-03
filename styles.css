@@ -55,7 +55,9 @@ td{font-size:12px}
 td small{display:block;color:var(--muted);font-size:10px;margin-top:5px}
 td a{display:inline-block;font-size:11px;color:#6554a4;white-space:nowrap;text-decoration:underline;text-decoration-color:#cfc5e4;text-underline-offset:4px;padding:6px 0}
 td a:hover{color:#44307b;text-decoration-color:currentColor}
-.wordlist-badge{display:inline-block;width:max-content;margin-top:8px;padding:3px 7px;border-radius:10px;background:#edf3e9;color:#4e7140;font-size:9px;white-space:nowrap}
+.wordlist-oxford-included::before,.wordlist-longman-included::before{display:inline-block;font-size:10px;margin-right:5px;text-decoration:none}
+.wordlist-oxford-included::before{content:"●";color:#6657bf}
+.wordlist-longman-included::before{content:"◆";color:#4b8153}
 .variant-links a{display:block}
 .library-filters{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;margin:22px 26px 0}
 .library-filters label{display:flex;flex-direction:column;gap:7px;font-size:11px;color:#686077}
