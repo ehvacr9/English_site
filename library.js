@@ -55,36 +55,14 @@
       text.textContent = entry.word;
       word.append(text);
       const pos = document.createElement("td");
-      const levels = document.createElement("td");
       for (const group of entry.groups) {
         const part = document.createElement("div");
         part.className = "pos-group";
         part.lang = "en";
         part.textContent = group.pos;
-        const levelRow = document.createElement("div");
-        levelRow.className = "level-group";
-        const values = groupLevels(group);
-        for (const value of values.length ? values : [""]) {
-          const badge = document.createElement("span");
-          badge.className = `level level-${value ? value.toLowerCase() : "ungraded"}`;
-          badge.textContent = value || "未提供";
-          levelRow.append(badge);
-        }
-        if (group.levelSource === "Cambridge") {
-          const source = document.createElement("small");
-          source.className = "level-source-label";
-          source.textContent = "Cambridge";
-          source.title = values.length
-            ? "依此詞性的詞義標級整理，多個等級表示詞義難度不同；不是整個單字的統一等級。"
-            : group.levelStatus === "ungraded"
-              ? "Cambridge 此詞性未標示 CEFR。"
-              : "Cambridge 未核對到相同詞頭與詞性，保留未提供。";
-          levelRow.append(source);
-        }
         pos.append(part);
-        levels.append(levelRow);
       }
-      row.append(word, pos, levels);
+      row.append(word, pos);
       for (const dictionary of dictionaries) {
         const cell = document.createElement("td");
         if (dictionary.name === "Oxford") {
@@ -109,7 +87,7 @@
     if (!filtered.length) {
       const row = document.createElement("tr");
       const cell = document.createElement("td");
-      cell.colSpan = 8;
+      cell.colSpan = 7;
       cell.className = "empty-results";
       cell.textContent = "沒有符合的詞條，請更換關鍵字、字首、等級或清除篩選。";
       row.append(cell);
