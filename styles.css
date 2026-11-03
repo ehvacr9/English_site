@@ -75,7 +75,8 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .pos-group,.level-group{min-height:35px;display:flex;align-items:center}
 .pos-group{white-space:nowrap}
 .word-source-label{display:block;font:10px "Noto Sans TC",system-ui,sans-serif;color:#74628e;margin-top:6px}
-.frequency-label{margin:0 0 0 8px;color:var(--muted);font-size:10px}
+.level-group{gap:4px;white-space:nowrap}
+.level-source-label{font-size:10px;color:var(--muted)}
 .level-ungraded{background:#f0f0f3;color:#696977;white-space:nowrap}
 @media(max-width:700px){.library-filters{margin:18px 18px 0;gap:10px}.search-field{flex-basis:100%}.pagination{gap:8px}.pagination button{padding:9px}.library-error{margin:18px}}
 .level{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.5px;padding:4px 10px;border-radius:6px}

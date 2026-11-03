@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="./styles.css">
   <script src="./oxford-words.js" defer></script>
   <script src="./oxford-links.js" defer></script>
-  <script src="./longman-words.js" defer></script>
-  <script src="./library.js?v=longman-union" defer></script>
+  <script src="./longman-words.js?v=cambridge-cefr" defer></script>
+  <script src="./library.js?v=cambridge-cefr" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">跳到主要內容</a>
@@ -30,11 +30,11 @@
     <main id="main" tabindex="-1">
       <div class="page-heading"><div><div class="eyebrow">WORDS WORTH KNOWING</div><h1>最常用詞彙庫</h1><p>Oxford 3000 加上 Longman 的未收錄單字，一次查閱五家英文辭典。</p></div><span class="entry-count">3,578 筆詞條</span></div>
       <section class="library-panel" aria-labelledby="library-title">
-        <div class="panel-heading"><div><h2 id="library-title">詞彙一覽</h2><p>Oxford 3,000 筆＋Longman 新增 578 筆；跳過 2,582 個已收錄單字。Longman 僅提供詞性與頻率，CEFR 標示「未提供」。</p></div><span class="dictionary-count">5 家英文辭典</span></div>
+        <div class="panel-heading"><div><h2 id="library-title">詞彙一覽</h2><p>Oxford 3,000 筆＋Longman 新增 578 筆。原有等級保留 Oxford 來源；新增詞彙的 CEFR 參考 Cambridge，依詞性列出已核對的詞義等級。</p></div><span class="dictionary-count">5 家英文辭典</span></div>
         <form class="library-filters" id="filters" role="search" aria-label="搜尋詞彙">
           <label class="search-field" for="word-search">搜尋單字<input id="word-search" type="search" placeholder="例如 ability、bank、according to" autocomplete="off" disabled></label>
           <label for="initial-filter">字首分類<select id="initial-filter" disabled><option value="">全部字首</option></select></label>
-          <label for="level-filter">CEFR 等級<select id="level-filter" disabled><option value="">全部等級</option><option>A1</option><option>A2</option><option>B1</option><option>B2</option><option value="ungraded">未提供（Longman）</option></select></label>
+          <label for="level-filter">CEFR 等級<select id="level-filter" disabled><option value="">全部等級</option><option>A1</option><option>A2</option><option>B1</option><option>B2</option><option>C1</option><option>C2</option><option value="ungraded">未提供</option></select></label>
           <button type="reset" id="clear-filters" disabled>清除篩選</button>
         </form>
         <p class="table-hint" id="table-hint">辭典連結另開分頁；同形詞請在辭典內選擇對應詞義。窄螢幕可在表格內左右捲動。</p>
@@ -49,7 +49,7 @@
         </div>
         <div class="table-footer"><span id="results-status" role="status" aria-live="polite">正在載入詞庫…</span><div class="pagination" aria-label="詞庫分頁"><button type="button" id="previous-page" disabled>← 上一頁</button><span id="page-status"></span><button type="button" id="next-page" disabled>下一頁 →</button></div></div>
       </section>
-      <aside class="library-note"><h2>查閱小提醒</h2><p>共 3,578 筆詞條，每頁 50 筆，依單字字母排序。Longman 以單字比對 Oxford 查詢詞，忽略大小寫、彎／直引號及多餘空白；a、an、同形詞編號與括號註記不會造成重複新增。不合併不同拼法。已存在的單字整筆跳過，不修改其 Oxford 詞性或等級。</p><p>字首、搜尋與等級條件可交叉使用。「未提供（Longman）」可單獨查看新增詞彙。S1–S3、W1–W3 分別是口語與書面頻率，不是 CEFR 分級。</p><p>Oxford 已核對的詞性直接連結繼續保留。Longman 新增單字也依官方資料比對可用詞性連結；尚未核對的詞性明確提供「Oxford · 搜尋其他詞性」，不猜測網址。其他辭典依單字查詢，仍需確認詞義或拼法。</p><p>單字等級不代表整體英語能力。各家連結與可用性由原網站維護。</p></aside>
+      <aside class="library-note"><h2>查閱小提醒</h2><p>共 3,578 筆詞條，每頁 50 筆，依單字字母排序。Longman 以單字比對 Oxford 查詢詞，忽略大小寫、彎／直引號及多餘空白；a、an、同形詞編號與括號註記不會造成重複新增。不合併不同拼法。已存在的單字整筆跳過，不修改其 Oxford 詞性或等級。</p><p>新增詞彙的等級標註 Cambridge 來源。同一詞性如有不同詞義等級，會全部列出（例如 absorb 的 B2、C1），不是整個單字的統一等級；片語或慣用語的分級不套用到單字。未標級或未核對到相同詞頭／詞性的資料維持「未提供」，不推測。字首、搜尋與 A1–C2 等級條件可交叉使用；「未提供」找出至少一個詞性尚無等級的詞條，保留顯示其全部詞性／等級。</p><p>Oxford 已核對的詞性直接連結繼續保留。Longman 新增單字也依官方資料比對可用詞性連結；尚未核對的詞性明確提供「Oxford · 搜尋其他詞性」，不猜測網址。其他辭典依單字查詢，仍需確認詞義或拼法。</p><p>單字等級不代表整體英語能力。各家連結與可用性由原網站維護。</p></aside>
       <footer class="footer"><span><strong>Daily English</strong> · 常用詞彙，慢慢累積。</span><a href="./The_Oxford_3000.pdf" target="_blank" rel="noopener noreferrer">Oxford 3000 原始詞表 ↗<span class="sr-only">（另開分頁）</span></a></footer>
     </main>
   </div>

@@ -7,7 +7,9 @@
   const $ = (id) => document.getElementById(id);
   if (!Array.isArray(oxford) || oxford.length !== 3000 || !Array.isArray(longman) || longman.length !== 578 || !oxfordLinks ||
       oxford.some((entry) => !Array.isArray(oxfordLinks[entry.word]) || !oxfordLinks[entry.word].length) ||
-      longman.some((entry) => !Array.isArray(entry.oxfordLinks) || (!entry.oxfordLinks.length && !entry.oxfordSearch))) {
+      longman.some((entry) => !Array.isArray(entry.oxfordLinks) || (!entry.oxfordLinks.length && !entry.oxfordSearch) ||
+        !entry.cambridge || !entry.cambridge.url || entry.groups.some((group) => !Array.isArray(group.levels) ||
+          group.levelSource !== "Cambridge" || group.levels.some((level) => !["A1", "A2", "B1", "B2", "C1", "C2"].includes(level))))) {
     console.error("Vocabulary or dictionary link data is missing or incomplete.");
     $("library-error").textContent = "無法載入完整詞庫，請重新整理頁面或檢查網路。你仍可從側邊連結查閱原始 PDF。";
     $("library-error").hidden = false;
@@ -20,6 +22,7 @@
   const normalize = (text) => text.toLowerCase().replaceAll("’", "'").trim().replace(/\s+/g, " ");
   const entries = [...oxford, ...longman].sort((a, b) => normalize(a.terms[0]).localeCompare(normalize(b.terms[0]), "en"));
   let filtered = entries;
+  const groupLevels = (group) => group.levels || (group.level ? [group.level] : []);
   const dictionaries = [
     { name: "Oxford" },
     { name: "Cambridge", url: (term) => `https://dictionary.cambridge.org/dictionary/english/${encodeURIComponent(term.replaceAll(" ", "-"))}` },
@@ -62,18 +65,26 @@
         part.className = "pos-group";
         part.lang = "en";
         part.textContent = group.pos;
-        if (group.frequency) {
-          const frequency = document.createElement("small");
-          frequency.className = "frequency-label";
-          frequency.textContent = group.frequency;
-          part.append(frequency);
-        }
         const levelRow = document.createElement("div");
         levelRow.className = "level-group";
-        const badge = document.createElement("span");
-        badge.className = `level level-${group.level ? group.level.toLowerCase() : "ungraded"}`;
-        badge.textContent = group.level || "未提供";
-        levelRow.append(badge);
+        const values = groupLevels(group);
+        for (const value of values.length ? values : [""]) {
+          const badge = document.createElement("span");
+          badge.className = `level level-${value ? value.toLowerCase() : "ungraded"}`;
+          badge.textContent = value || "未提供";
+          levelRow.append(badge);
+        }
+        if (group.levelSource === "Cambridge") {
+          const source = document.createElement("small");
+          source.className = "level-source-label";
+          source.textContent = "Cambridge";
+          source.title = values.length
+            ? "依此詞性的詞義標級整理，多個等級表示詞義難度不同；不是整個單字的統一等級。"
+            : group.levelStatus === "ungraded"
+              ? "Cambridge 此詞性未標示 CEFR。"
+              : "Cambridge 未核對到相同詞頭與詞性，保留未提供。";
+          levelRow.append(source);
+        }
         pos.append(part);
         levels.append(levelRow);
       }
@@ -91,7 +102,8 @@
           }
         } else {
           for (const term of entry.terms) {
-            cell.append(externalLink(`${dictionary.name}${entry.terms.length > 1 ? ` · ${term}` : ""} ↗`, dictionary.url(term), `${entry.word}：${dictionary.name} 查詢 ${term}`));
+            const url = dictionary.name === "Cambridge" && entry.cambridge ? entry.cambridge.url : dictionary.url(term);
+            cell.append(externalLink(`${dictionary.name}${entry.terms.length > 1 ? ` · ${term}` : ""} ↗`, url, `${entry.word}：${dictionary.name} 查詢 ${term}`));
           }
         }
         row.append(cell);
@@ -120,7 +132,7 @@
     const level = $("level-filter").value;
     filtered = entries.filter((entry) => normalize(entry.word).includes(query) &&
       (!initial || normalize(entry.word).startsWith(initial)) &&
-      (!level || entry.groups.some((group) => group.level === (level === "ungraded" ? "" : level))));
+      (!level || entry.groups.some((group) => level === "ungraded" ? !groupLevels(group).length : groupLevels(group).includes(level))));
     pageNumber = 1;
     render();
   }
