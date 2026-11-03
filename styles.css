@@ -49,7 +49,7 @@ thead{background:#f6f5fb}
 thead th{font-size:11px;color:#756c88;font-weight:500;white-space:nowrap}
 thead th:first-child,tbody th{padding-left:26px}
 .column-detail{display:block;font-size:9px;color:#817597;letter-spacing:1px}
-tbody th{font-family:Georgia,serif;font-size:23px;font-weight:400;color:#514064;white-space:nowrap}
+tbody th{font-family:Georgia,serif;font-size:23px;font-weight:400;color:#0070C0;white-space:nowrap}
 tbody tr:hover{background:#fcfbff}
 td{font-size:12px}
 td small{display:block;color:var(--muted);font-size:10px;margin-top:5px}
