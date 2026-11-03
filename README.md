@@ -15,6 +15,7 @@
 - 表格僅顯示單字、詞性與五家辭典連結，不顯示 CEFR 欄；等級資料保留供篩選使用，命中任一詞性／詞義等級即可顯示整筆詞條。
 - 例：`academic` 的 `adj.` 是 B1、`n.` 是 B2，不會將兩個詞性誤標成同一級。
 - 每筆附 Oxford、Cambridge、Longman、Collins、Merriam-Webster 五家官方查閱連結。a、an 各自提供五家連結。已移除逐筆 PDF 頁碼連結，仍保留側邊及頁尾的完整詞表入口；資料檔中的頁碼保留供來源驗證。
+- Oxford 與 Longman 的辭典欄會在連結旁標記「Oxford 3000 收錄」或「Longman 3000 收錄」，依兩份上傳 PDF 逐詞核對；Oxford 同詞頭的不同義項也會分別標示。標記彼此獨立，不推論 Cambridge、Collins 或 Merriam-Webster 的詞表收錄狀況。
 - 辭典查詢會移除詞頭後方的來源編號與括號說明，保留片語，將彎單引號正規化。Oxford 按詞性列出核對過的直接詞條連結（例如 map 的 noun、verb）；其他辭典採官方詞條網址格式。
 - 辭典可能收錄在其他拼法或詞義下；連結並不保證直接跳到同一詞性或詞義。各家可用性與反自動化限制由原站決定，未逐一在線驗證所有外部頁面。網站不複製辭典釋義。
 - 原生表格、鍵盤可操作的搜尋與分頁，窄螢幕可在表格內左右捲動。
@@ -28,7 +29,7 @@
 
 ## 本機預覽
 
-直接開啟 [index.html](./index.html)，或以 VS Code 靜態網站工具預覽。Oxford 詞庫、Oxford 詞性連結及 Longman 新增詞庫分別以 [oxford-words.js](./oxford-words.js)、[oxford-links.js](./oxford-links.js)、[longman-words.js](./longman-words.js) 載入，不使用 `fetch`，因此支援直接開啟本機檔案。共用樣式為 [styles.css](./styles.css)，搜尋、表格與分頁為 [library.js](./library.js)。
+直接開啟 [index.html](./index.html)，或以 VS Code 靜態網站工具預覽。Oxford 詞庫、Oxford 詞性連結、Longman 新增詞庫及詞表收錄旗標分別以 [oxford-words.js](./oxford-words.js)、[oxford-links.js](./oxford-links.js)、[longman-words.js](./longman-words.js)、[wordlist-membership.js](./wordlist-membership.js) 載入，不使用 `fetch`，因此支援直接開啟本機檔案。共用樣式為 [styles.css](./styles.css)，搜尋、表格與分頁為 [library.js](./library.js)。
 
 Google Fonts 是可選字型，無網路時自動使用系統字型。
 
@@ -38,10 +39,13 @@ Google Fonts 是可選字型，無網路時自動使用系統字型。
 
 ```powershell
 py scripts\import_oxford.py
+py scripts\import_wordlist_membership.py
 py -m unittest discover -s scripts -p "test_*.py"
 ```
 
 若缺少 PyMuPDF 再執行 `py -m pip install PyMuPDF`。重新匯入會更新產生的 [oxford-words.js](./oxford-words.js)；請勿直接手改這個資料檔。正常瀏覽網站不需要 Python。
+
+[scripts/import_wordlist_membership.py](./scripts/import_wordlist_membership.py) 從兩份 PDF 重新產生 Oxford／Longman 收錄標記檔；標記只依 headword 對應，不複製辭典內容。
 
 ### Oxford 詞性連結
 

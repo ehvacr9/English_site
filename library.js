@@ -4,12 +4,17 @@
   const oxford = window.OXFORD_WORDS;
   const longman = window.LONGMAN_WORDS;
   const oxfordLinks = window.OXFORD_LINKS;
+  const wordlistMembership = window.WORDLIST_MEMBERSHIP;
   const $ = (id) => document.getElementById(id);
   if (!Array.isArray(oxford) || oxford.length !== 3000 || !Array.isArray(longman) || longman.length !== 578 || !oxfordLinks ||
       oxford.some((entry) => !Array.isArray(oxfordLinks[entry.word]) || !oxfordLinks[entry.word].length) ||
       longman.some((entry) => !Array.isArray(entry.oxfordLinks) || (!entry.oxfordLinks.length && !entry.oxfordSearch) ||
         !entry.cambridge || !entry.cambridge.url || entry.groups.some((group) => !Array.isArray(group.levels) ||
-          group.levelSource !== "Cambridge" || group.levels.some((level) => !["A1", "A2", "B1", "B2", "C1", "C2"].includes(level))))) {
+          group.levelSource !== "Cambridge" || group.levels.some((level) => !["A1", "A2", "B1", "B2", "C1", "C2"].includes(level)))) ||
+      !wordlistMembership || Object.keys(wordlistMembership).length !== 3578 ||
+      [...oxford, ...longman].some((entry) => !wordlistMembership[entry.word] ||
+        typeof wordlistMembership[entry.word].oxford !== "boolean" ||
+        typeof wordlistMembership[entry.word].longman !== "boolean")) {
     console.error("Vocabulary or dictionary link data is missing or incomplete.");
     $("library-error").textContent = "無法載入完整詞庫，請重新整理頁面或檢查網路。你仍可從側邊連結查閱原始 PDF。";
     $("library-error").hidden = false;
@@ -39,6 +44,15 @@
     link.rel = "noopener noreferrer";
     link.setAttribute("aria-label", `${label}（另開分頁）`);
     return link;
+  }
+
+  function appendWordlistBadge(cell, source, entry) {
+    if (!wordlistMembership[entry.word][source]) return;
+    const badge = document.createElement("small");
+    badge.className = "wordlist-badge";
+    badge.textContent = `${source === "oxford" ? "Oxford" : "Longman"} 3000 收錄`;
+    badge.title = `此單字有出現在上傳的 ${source === "oxford" ? "Oxford" : "Longman"} 3000 詞表。`;
+    cell.append(badge);
   }
 
   function render() {
@@ -80,6 +94,8 @@
             cell.append(externalLink(`${dictionary.name}${entry.terms.length > 1 ? ` · ${term}` : ""} ↗`, url, `${entry.word}：${dictionary.name} 查詢 ${term}`));
           }
         }
+        if (dictionary.name === "Oxford") appendWordlistBadge(cell, "oxford", entry);
+        if (dictionary.name === "Longman") appendWordlistBadge(cell, "longman", entry);
         row.append(cell);
       }
       fragment.append(row);
