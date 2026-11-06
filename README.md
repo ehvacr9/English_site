@@ -21,7 +21,13 @@
 - 原生表格、鍵盤可操作的搜尋與分頁，窄螢幕可在表格內左右捲動。
 - 資料未載入時顯示明確警告，不以空詞庫假裝載入成功。停用 JavaScript 時提供 PDF 替代入口。
 
-單字練習、發音、每日目標、學習紀錄、會話及測驗不再提供。不再讀寫或清除先前版本的 `localStorage`；舊的 hash 網址仍顯示詞彙庫。
+## Oxford 單字卡測試版
+
+[flashcards.html](./flashcards.html) 提供以 Oxford 3000 為基礎的 Anki 風格單字卡雛形，先以詞表前五筆詞條（a/an、abandon、ability、able、about）測試。卡片正面先顯示單字、詞性與 Oxford 等級；翻面顯示本站自編的中文提示、英文釋義及例句，並可播放單字或例句語音、切換卡片及記錄「再複習／記得」。
+
+翻面內容是本站自編學習材料，不是 Oxford 辭典釋義或例句。語音使用瀏覽器內建的語音合成；實際聲音依裝置和瀏覽器而異。熟悉度記錄只存在目前頁面工作階段，不寫入 `localStorage`，重新載入後重設。這是五筆詞條的介面測試，不代表完整 Oxford 3000 練習或間隔重複排程。
+
+本站其他每日目標、長期學習紀錄、會話及測驗功能仍未提供。不讀寫或清除先前版本的 `localStorage`；舊的 hash 網址仍顯示詞彙庫。
 
 ## CEFR 分級說明
 
@@ -29,7 +35,7 @@
 
 ## 本機預覽
 
-直接開啟 [index.html](./index.html)，或以 VS Code 靜態網站工具預覽。Oxford 詞庫、Oxford 詞性連結、Longman 新增詞庫及詞表收錄旗標分別以 [oxford-words.js](./oxford-words.js)、[oxford-links.js](./oxford-links.js)、[longman-words.js](./longman-words.js)、[wordlist-membership.js](./wordlist-membership.js) 載入，不使用 `fetch`，因此支援直接開啟本機檔案。共用樣式為 [styles.css](./styles.css)，搜尋、表格與分頁為 [library.js](./library.js)。
+直接開啟 [index.html](./index.html)，或以 VS Code 靜態網站工具預覽。Oxford 詞庫、Oxford 詞性連結、Longman 新增詞庫及詞表收錄旗標分別以 [oxford-words.js](./oxford-words.js)、[oxford-links.js](./oxford-links.js)、[longman-words.js](./longman-words.js)、[wordlist-membership.js](./wordlist-membership.js) 載入，不使用 `fetch`，因此支援直接開啟本機檔案。共用樣式為 [styles.css](./styles.css)，搜尋、表格與分頁為 [library.js](./library.js)，單字卡互動為 [flashcards.js](./flashcards.js)。
 
 Google Fonts 是可選字型，無網路時自動使用系統字型。
 

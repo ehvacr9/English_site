@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#7772e8">
+  <meta name="description" content="用 Oxford 3000 單字卡練習五個常用英文詞條，翻面查看自編提示、釋義與例句。">
+  <title>Oxford 單字卡｜Daily English 英語日常</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./oxford-words.js" defer></script>
+  <script src="./oxford-links.js" defer></script>
+  <script src="./flashcards.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+  <aside class="sidebar">
+    <a class="brand" href="./index.html" aria-label="Daily English 首頁"><span class="brand-icon">d<span>e.</span></span><span>Daily English<small>英語日常</small></span></a>
+    <span class="nav-label">你的英語資料庫</span>
+    <nav aria-label="主要導覽">
+      <a class="nav-item" href="./index.html"><span aria-hidden="true">▤</span>常用詞彙庫<span class="nav-badge">3578</span></a>
+      <a class="nav-item active" href="./flashcards.html" aria-current="page"><span aria-hidden="true">▣</span>Oxford 單字卡</a>
+      <a class="nav-item" href="./levels.html"><span aria-hidden="true">▥</span>英語分級說明</a>
+      <a class="nav-item" href="./The_Oxford_3000.pdf" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span>Oxford 3000 詞表<span class="sr-only">（另開分頁）</span></a>
+      <a class="nav-item" href="./longman_3000_list.pdf" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span>Longman 3000 詞表<span class="sr-only">（另開分頁）</span></a>
+    </nav>
+    <div class="sidebar-note"><span aria-hidden="true">✦</span><strong>先回想，再翻卡</strong><p>試著想起單字的意思，再查看提示、釋義與例句。</p></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><div class="breadcrumb">我的英語資料庫 <span>/</span> <strong>Oxford 單字卡</strong></div><span class="header-label">OXFORD 3000 FLASHCARDS</span></header>
+    <main id="main" tabindex="-1">
+      <div class="page-heading"><div><div class="eyebrow">RECALL · REVEAL · REVIEW</div><h1>Oxford 單字卡</h1><p>先回想單字意思，再翻面查看自編提示與例句。</p></div><span class="entry-count" id="deck-count">5 張測試卡</span></div>
+      <section class="flashcard-panel" aria-label="Oxford 單字卡練習">
+        <div class="flashcard-toolbar">
+          <span class="flashcard-deck-label">OXFORD 3000 · 測試組</span>
+          <span id="card-status" role="status" aria-live="polite">正在載入單字卡…</span>
+        </div>
+        <div class="flashcard-progress" aria-hidden="true"><span id="progress-bar"></span></div>
+        <article class="flashcard" id="flashcard" aria-live="polite">
+          <div class="flashcard-topline"><span id="card-counter">1 / 5</span><span class="flashcard-level" id="card-level"></span></div>
+          <div class="flashcard-front" id="card-front">
+            <div class="flashcard-word-row">
+              <h2 class="flashcard-word" id="card-word" lang="en" tabindex="-1"></h2>
+              <span class="flashcard-pos" id="card-pos" lang="en"></span>
+            </div>
+            <p class="flashcard-prompt">回想這個單字的意思，準備好後翻開答案。</p>
+            <button type="button" class="audio-button" id="play-word" aria-label="播放單字發音"><span aria-hidden="true">▶</span> 播放單字</button>
+            <button type="button" class="dictionary-link" id="oxford-link" target="_blank" rel="noopener noreferrer">在 Oxford 查閱 ↗<span class="sr-only">（另開分頁）</span></button>
+          </div>
+          <div class="flashcard-back" id="card-back" hidden>
+            <section class="flashcard-definition" aria-labelledby="definition-heading">
+              <h3 id="definition-heading" tabindex="-1">提示</h3>
+              <p id="card-hint"></p>
+              <h3>Definition</h3>
+              <p class="definition-text" id="card-definition" lang="en"></p>
+            </section>
+            <section class="flashcard-examples" aria-labelledby="examples-heading">
+              <h3 id="examples-heading">Examples</h3>
+              <ul id="card-examples"></ul>
+            </section>
+          </div>
+        </article>
+        <div class="flashcard-controls">
+          <button type="button" class="secondary-button" id="previous-card">← 上一張</button>
+          <button type="button" class="audio-button" id="replay-audio"><span aria-hidden="true">▶</span> 重播語音</button>
+          <button type="button" class="primary-button" id="reveal-answer">顯示答案</button>
+          <button type="button" class="secondary-button" id="next-card">下一張 →</button>
+        </div>
+        <div class="review-controls" id="review-controls" hidden>
+          <span>這張卡熟悉嗎？</span>
+          <button type="button" class="again-button" id="mark-again">再複習</button>
+          <button type="button" class="remember-button" id="mark-remembered">記得</button>
+        </div>
+        <p class="flashcard-note" id="speech-note">語音由瀏覽器合成；發音聲音依裝置和瀏覽器而異。翻面上的中文提示、英文釋義與例句為本站自編內容。</p>
+        <p class="flashcard-error" id="flashcard-error" role="alert" hidden></p>
+      </section>
+      <section class="flashcard-summary" aria-labelledby="summary-heading">
+        <h2 id="summary-heading">本次練習</h2>
+        <p><span id="reviewed-count">0</span> / 5 張已評估 <span class="summary-separator">·</span> 記得 <strong id="remembered-count">0</strong> 張</p>
+        <button type="button" id="restart-session">重新開始</button>
+      </section>
+      <aside class="library-note"><h2>測試版說明</h2><p>本組使用 Oxford 3000 詞表前五筆：a/an、abandon、ability、able、about。詞性與 CEFR 等級取自本站 Oxford 詞庫；釋義、提示及例句為本站撰寫，並非 Oxford 辭典內容。這是介面原型，練習評估只記錄於目前頁面工作階段，沒有長期排程或跨頁保存。</p></aside>
+      <footer class="footer"><span><strong>Daily English</strong> · 常用詞彙，慢慢累積。</span><a href="./index.html">回到常用詞彙庫 ↗</a></footer>
+    </main>
+  </div>
+</body>
+</html>
